@@ -1,2 +1,6 @@
-package oop.exercises.nm;public class Player {
+package oop.exercises.nm;
+
+abstract public class Player {
+
+    abstract public int requestMove();
 }
