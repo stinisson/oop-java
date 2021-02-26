@@ -3,76 +3,72 @@ package oop.exercises.nm;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Random;
-
-import oop.exercises.nm.Computer;
-import oop.exercises.nm.Human;
-
 
 
 public class Nm {
+    private boolean isComputer = true;
+    private final Computer computer;
+    private final Human human;
+
+    Nm() {
+        computer = new Computer();
+        human = new Human();
+    }
 
     public int gameStart() throws IOException {
         System.out.println("Welcome to Nm! How many matches should we start the game with? ");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Number of matches: ");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int numMatches = Integer.parseInt(reader.readLine());
         System.out.println("Great, we'll use " + numMatches + " matches.");
-        return numMatches;
-    }
-    public static void main( String[] arg) throws IOException {
-
-        Nm game = new Nm();
-        int numMatches = game.gameStart();
 
         System.out.println("\nPlayer 1: Computer");
         System.out.println("Player 2: Human");
         System.out.println("Remaining matches: " + numMatches);
 
-        while (true) {
+        return numMatches;
+    }
 
-            // CPU MOVE
-            Random rand = new Random();
-            int n = rand.nextInt(numMatches/2 );
-            n += 1;
-            System.out.println("\nComputer removes " + n + " matches");
-            numMatches -= n;
-            System.out.println("Remaining matches: " + numMatches);
-            if (numMatches <= 1) {
-                System.out.println("\nHuman loses, Computer wins");
-                break;
-            }
+    public int makeMove(boolean isComputer, int numMatches) {
+        int drawnMatches;
 
-            // Human move
+        if (isComputer) {
+            drawnMatches = computer.requestMove(numMatches);
+            System.out.println("\nComputer removes " + drawnMatches + " matches");
+
+        } else {
             System.out.println("\nYour move. There are " + numMatches + " matches");
             System.out.print("Number of matches to draw: ");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            int userChoice = -1;
-            while (userChoice == -1) {
-                try {
-                    userChoice = Integer.parseInt(reader.readLine());
-                } catch (NumberFormatException ignored) {
+            drawnMatches = human.requestMove(numMatches);
+            System.out.println("Human removes " + drawnMatches + " matches");
+        }
 
-                }
+        numMatches -= drawnMatches;
+        System.out.println("Remaining matches: " + numMatches);
+        return numMatches;
+    }
 
-                if (!(userChoice > 0 &&  userChoice <= numMatches/2)) {
-                    System.out.println("Sorry, illegal move.");
-                    System.out.println("Please choose at least one match and at most " + numMatches/2);
-                    System.out.println("\nYour move. There are " + numMatches + " matches");
-                    System.out.print("Number of matches to draw: ");
-                    userChoice = -1;
-                }
-            }
+    public void run() throws IOException {
+        int numMatches = gameStart();
+        while (true) {
 
-            System.out.println("Human removes " + userChoice + " matches");
-            numMatches -= userChoice;
-            System.out.println("Remaining matches: " + numMatches);
-            if (numMatches <= 1) {
-                System.out.println("\nComputer loses, Human wins");
+            numMatches = makeMove(isComputer, numMatches);
+            isComputer = !isComputer;
+
+            if (numMatches == 1 && !isComputer) {
+                System.out.println("\nHuman loses, Computer wins.");
+                break;
+            } else if (numMatches <= 1 && isComputer){
+                System.out.println("\nComputer loses, Human wins.");
                 break;
             }
         }
-
     }
+
+    public static void main( String[] arg) throws IOException {
+        Nm nm = new Nm();
+        nm.run();
+    }
+
 }
 
