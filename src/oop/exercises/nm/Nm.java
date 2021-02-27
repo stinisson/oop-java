@@ -72,8 +72,8 @@ public class Nm {
         try {
             int numMatches = Integer.parseInt(args[0]);
             nm.run(numMatches);
-        } catch (NumberFormatException | IOException ignored) {
-            System.out.println("Please specify number of of matches as an integer.");
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException | IOException ignored) {
+            System.out.println("Number of matches to start the game with must be given as an integer.");
             System.out.println("Program ends.");
         }
     }
