@@ -16,7 +16,7 @@ public class Nm {
 
     public void run(int numMatches) throws IOException {
         this.numMatches = numMatches;
-        numMatches = gameStart();
+        numMatches = gameIntro();
 
         while (true) {
             numMatches = makeMove(isComputer, numMatches);
@@ -32,7 +32,7 @@ public class Nm {
         }
     }
 
-    public int gameStart() {
+    public int gameIntro() {
         System.out.println("\n*** Welcome to Nm! ***");
         if (numMatches < 4) {
             System.out.println(numMatches + " matches, how fun would that be? " +
