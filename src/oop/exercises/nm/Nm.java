@@ -34,9 +34,10 @@ public class Nm {
 
     public int gameIntro() {
         System.out.println("\n*** Welcome to Nm! ***");
-        if (numMatches < 4) {
-            System.out.println(numMatches + " matches, how fun would that be? " +
-                    "The game needs to be played with at least 4 matches.");
+        if (numMatches < 4 | numMatches > 1000) {
+            System.out.println(numMatches + " matches, how fun would that be?");
+            System.out.println("The game needs to be played with at least 4 matches but moderation is a virtue," +
+                    " so not too many, ok?");
             numMatches = 7;
         }
         System.out.println("This game will be played with " + numMatches + " matches.");
