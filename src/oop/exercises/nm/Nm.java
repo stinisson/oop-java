@@ -25,7 +25,7 @@ public class Nm {
             if (numMatches == 1 && !isComputer) {
                 System.out.println("\nHuman loses, Computer wins.");
                 break;
-            } else if (numMatches <= 1 && isComputer){
+            } else if (numMatches == 1 && isComputer){
                 System.out.println("\nComputer loses, Human wins.");
                 break;
             }
@@ -48,16 +48,18 @@ public class Nm {
 
     public int makeMove(boolean isComputer, int numMatches) {
         int drawnMatches;
+        int minDraw = 1;
+        int maxDraw = numMatches/2;
 
         if (isComputer) {
-            drawnMatches = computer.requestMove(numMatches);
+            drawnMatches = computer.requestMove(minDraw, maxDraw, numMatches);
             System.out.println("\nComputer removes " + drawnMatches + " matches");
 
         } else {
             System.out.println("\nYour move. There are " + numMatches + " matches");
             System.out.print("Number of matches to draw: ");
-            drawnMatches = human.requestMove(numMatches);
-            System.out.println("Human removes " + drawnMatches + " matches");
+            drawnMatches = human.requestMove(minDraw, maxDraw, numMatches);
+            System.out.println("\nHuman removes " + drawnMatches + " matches");
         }
         numMatches -= drawnMatches;
         System.out.println("Remaining matches: " + numMatches);
@@ -65,7 +67,7 @@ public class Nm {
     }
 
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Nm nm = new Nm();
         try {
             int numMatches = Integer.parseInt(args[0]);

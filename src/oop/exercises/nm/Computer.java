@@ -3,12 +3,14 @@ package oop.exercises.nm;
 import java.util.Random;
 
 class Computer extends Player {
+    final Random rand;
+
+    Computer() {
+        rand = new Random();
+    }
 
     @Override
-    public int requestMove(int numMatches) {
-        Random rand = new Random();
-        int draw = rand.nextInt(numMatches/2);
-        draw += 1;
-        return draw;
+    public int requestMove(int startRange, int endRange, int numMatches) {
+        return startRange + rand.nextInt(endRange - startRange + 1);
     }
 }
