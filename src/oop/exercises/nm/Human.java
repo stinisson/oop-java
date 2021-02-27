@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Human extends Player {
+class Human extends Player {
 
     @Override
     public int requestMove(int numMatches) {

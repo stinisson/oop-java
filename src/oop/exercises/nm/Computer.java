@@ -2,7 +2,7 @@ package oop.exercises.nm;
 
 import java.util.Random;
 
-public class Computer extends Player {
+class Computer extends Player {
 
     @Override
     public int requestMove(int numMatches) {

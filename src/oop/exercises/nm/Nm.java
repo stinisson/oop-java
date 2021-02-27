@@ -1,12 +1,11 @@
 package oop.exercises.nm;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 
 public class Nm {
     private boolean isComputer = true;
+    private int numMatches;
     private final Computer computer;
     private final Human human;
 
@@ -15,17 +14,35 @@ public class Nm {
         human = new Human();
     }
 
-    public int gameStart() throws IOException {
-        System.out.println("Welcome to Nm! How many matches should we start the game with? ");
-        System.out.print("Number of matches: ");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int numMatches = Integer.parseInt(reader.readLine());
-        System.out.println("Great, we'll use " + numMatches + " matches.");
+    public void run(int numMatches) throws IOException {
+        this.numMatches = numMatches;
+        numMatches = gameStart();
 
+        while (true) {
+            numMatches = makeMove(isComputer, numMatches);
+            isComputer = !isComputer;
+
+            if (numMatches == 1 && !isComputer) {
+                System.out.println("\nHuman loses, Computer wins.");
+                break;
+            } else if (numMatches <= 1 && isComputer){
+                System.out.println("\nComputer loses, Human wins.");
+                break;
+            }
+        }
+    }
+
+    public int gameStart() {
+        System.out.println("\n*** Welcome to Nm! ***");
+        if (numMatches < 4) {
+            System.out.println(numMatches + " matches, how fun would that be? " +
+                    "The game needs to be played with at least 4 matches.");
+            numMatches = 7;
+        }
+        System.out.println("This game will be played with " + numMatches + " matches.");
         System.out.println("\nPlayer 1: Computer");
         System.out.println("Player 2: Human");
         System.out.println("Remaining matches: " + numMatches);
-
         return numMatches;
     }
 
@@ -42,32 +59,21 @@ public class Nm {
             drawnMatches = human.requestMove(numMatches);
             System.out.println("Human removes " + drawnMatches + " matches");
         }
-
         numMatches -= drawnMatches;
         System.out.println("Remaining matches: " + numMatches);
         return numMatches;
     }
 
-    public void run() throws IOException {
-        int numMatches = gameStart();
-        while (true) {
 
-            numMatches = makeMove(isComputer, numMatches);
-            isComputer = !isComputer;
-
-            if (numMatches == 1 && !isComputer) {
-                System.out.println("\nHuman loses, Computer wins.");
-                break;
-            } else if (numMatches <= 1 && isComputer){
-                System.out.println("\nComputer loses, Human wins.");
-                break;
-            }
-        }
-    }
-
-    public static void main( String[] arg) throws IOException {
+    public static void main(String[] args) throws IOException {
         Nm nm = new Nm();
-        nm.run();
+        try {
+            int numMatches = Integer.parseInt(args[0]);
+            nm.run(numMatches);
+        } catch (NumberFormatException | IOException ignored) {
+            System.out.println("Please specify number of of matches as an integer.");
+            System.out.println("Program ends.");
+        }
     }
 
 }
