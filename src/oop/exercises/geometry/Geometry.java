@@ -5,22 +5,27 @@ import java.awt.*;
 import java.awt.event.*;
 
 
-public class Geometry {
+
+public class Geometry extends JFrame{
     private static int d = 200;
 
     public Geometry() {
+        //super("Topp tipp");
         geometryPanel();
+
     }
 
     public void geometryPanel() {
-        JFrame f = new JFrame();
-        JPanel p = new DrawingPanel();
-        f.add(p);
-        f.setBounds(d,d,d*4,d*2);
+        //JFrame f = new JFrame();
 
-        f.setDefaultCloseOperation(f.EXIT_ON_CLOSE);
+        JPanel p = new DrawingPanel();
+        add(p);
+        setBounds(d,d,d*4,d*2);
+        setTitle("Geometry Tap");
+
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         System.out.println("close");
-        f.setVisible(true);
+        setVisible(true);
     }
 
     public static void main(String args[]) {
@@ -30,7 +35,16 @@ public class Geometry {
 
 class DrawingPanel extends JPanel {
 
+    MouseListener l1 = new MouseListener();
     public DrawingPanel() {
-        setBackground( Color.PINK );
+        setBackground(Color.PINK);
+        addMouseListener(l1);
+    }
+}
+
+
+class MouseListener extends MouseAdapter {
+    public void mouseClicked(MouseEvent e) {
+        System.out.println("Klick vid ("+e.getX() + "," + e.getY()+")");
     }
 }
