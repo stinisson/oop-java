@@ -4,22 +4,27 @@ import java.awt.*;
 
 public class Rectangle extends Figure{
 
-    @Override
-    public void render(Graphics g, Integer d) {
-        Color LBLUE = new Color(104,212,249, 200);
-        Color LGREEN = new Color(174,241,182, 200);
-        Color LRED = new Color(255,199,238, 200);
-
-        g.setColor(LBLUE);
-        g.fillRect(50, 50, 100, 200);
-
-        g.setColor(LGREEN);
-        g.fillRect(150,150, 60, 60);
-
-        g.setColor(LRED);
-        g.fillRect(250,250, 60, 60);
+    public Rectangle(int x, int y) {
+        super(x, y);
     }
 
+    @Override
+    public void render(Graphics g) {
+        int width = 2*r;
+        int height = 2*r;
+        g.setColor(LLILAC);
+        g.fillRect(x-width/2, y-height/2, width, height);
+    }
 
-
+    @Override
+    public boolean contains(int mx, int my) {
+        if (x-r<=mx && y-r<=my && mx <= x+r && my <= y+r) {
+            System.out.println("CONTAINS RECTANGLE");
+            return x-r<=mx && y-r<=my && mx <= x+r && my <= y+r;
+        } else {
+            System.out.println("No rectangle");
+            return false;
+        }
+        //return x-r<=mx && y-r<=my && mx <= x+r && my <= y+r;
+    }
 }
