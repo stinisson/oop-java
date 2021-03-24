@@ -32,18 +32,36 @@ public class Geometry extends JFrame{
 
 class DrawingPanel extends JPanel implements MouseListener{
 
-    // figure list
-    /*Rectangle rect = new Rectangle();
-    Circle circle = new Circle();*/
-    //Triangle triangle = new Triangle(pWidth/2, pHeight/2);
-
     ArrayList<Figure> figures;
+    int mx, my;
 
     public DrawingPanel() {
-        // KOLLA UPP
-        //super();
         setBackground(Color.PINK);
         addMouseListener(this);
+
+
+        MouseAdapter mouseAdapter = new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                System.out.println("mouseEntered");
+            }
+
+            public void mouseExited(MouseEvent e) {
+                System.out.println("mouseExited");
+            }
+        };
+        addMouseListener(mouseAdapter);
+
+        MouseAdapter mouseAdapter2 = new MouseAdapter() {
+            public void mouseMoved(MouseEvent e) {
+                System.out.println("mouseMoved");
+            }
+            public void mouseDragged(MouseEvent e) {
+                System.out.println("mouseDragged");
+            }
+        };
+        addMouseListener(mouseAdapter2);
+        addMouseMotionListener(mouseAdapter2);
+
     }
 
     public void addFigures() {
@@ -65,10 +83,12 @@ class DrawingPanel extends JPanel implements MouseListener{
         }
     }
 
+
+
     @Override
     public void mouseClicked(MouseEvent e) {
-        int mx = e.getX();
-        int my = e.getY();
+        mx = e.getX();
+        my = e.getY();
         System.out.println("Klick vid ("+e.getX() + "," + e.getY()+")");
         for (Figure figure : figures) {
             figure.contains(mx, my);
@@ -92,4 +112,7 @@ class DrawingPanel extends JPanel implements MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {
     }
+
+
+
 }

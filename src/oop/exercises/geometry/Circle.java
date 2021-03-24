@@ -3,6 +3,7 @@ package oop.exercises.geometry;
 import java.awt.*;
 
 public class Circle extends Figure{
+
     public Circle(int x, int y) {
         super(x, y);
     }
@@ -26,5 +27,11 @@ public class Circle extends Figure{
             return false;
         }
         //return (cx-x)*(cx-x)+(cy-y)*(cy-y) <= r*r;
+    }
+
+    @Override
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }

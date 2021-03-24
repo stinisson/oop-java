@@ -27,4 +27,10 @@ public class Rectangle extends Figure{
         }
         //return x-r<=mx && y-r<=my && mx <= x+r && my <= y+r;
     }
+
+    @Override
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 }

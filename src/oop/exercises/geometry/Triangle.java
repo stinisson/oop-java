@@ -30,13 +30,9 @@ public class Triangle extends Figure{
         //return -dy <= 2*dx && 2*dx <= dy && dy <= h;
     }
 
-    public boolean containsTriangle(int mx, int my) {
-        int dx = mx-x;
-        int dy = my-y;
-
-        return -dy <= 2*dx
-                && 2*dx <= dy
-                && dy <= h;
+    @Override
+    public void setPosition(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
-
 }

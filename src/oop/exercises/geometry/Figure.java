@@ -33,4 +33,6 @@ abstract class Figure {
     abstract public void render(Graphics g);
 
     abstract public boolean contains(int mx, int my);
+
+    abstract public void setPosition(int x, int y);
 }
