@@ -19,19 +19,27 @@ public class Circle extends Figure{
 
     @Override
     public boolean contains(int mx, int my) {
-        if ((x-mx)*(x-mx)+(y-my)*(y-my) <= r*r) {
-            System.out.println("CONTAINS CIRCLE");
-            return (x-mx)*(x-mx)+(y-my)*(y-my) <= r*r;
-        } else {
-            System.out.println("No circle");
-            return false;
-        }
-        //return (cx-x)*(cx-x)+(cy-y)*(cy-y) <= r*r;
+        return (x-mx)*(x-mx)+(y-my)*(y-my) <= r*r;
     }
 
     @Override
-    public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public void setPosition(int x0, int y0) {
+        x = x0;
+        y = y0;
+    }
+
+/*
+    public void move(Graphics g, int mx, int my) {
+        //undraw(g, Color.YELLOW);
+        x = mx;
+        y = my;
+        render(g);
+    }
+*/
+
+    @Override
+    public void move(int x0, int y0) {
+        x = x0;
+        y = y0;
     }
 }

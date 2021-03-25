@@ -20,19 +20,18 @@ public class Triangle extends Figure{
     public boolean contains(int mx, int my) {
         int dx = mx-x;
         int dy = my-y+h/2;
-        if (-dy <= 2*dx && 2*dx <= dy && dy <= h) {
-            System.out.println("CONTAINS TRIANGLE");
-            return -dy <= 2*dx && 2*dx <= dy && dy <= h;
-        } else {
-            System.out.println("No triangle");
-            return false;
-        }
-        //return -dy <= 2*dx && 2*dx <= dy && dy <= h;
+        return -dy <= 2*dx && 2*dx <= dy && dy <= h;
     }
 
     @Override
     public void setPosition(int x, int y) {
         this.x = x;
         this.y = y;
+    }
+
+    @Override
+    public void move(int x0, int y0) {
+        x = x0;
+        y = y0;
     }
 }

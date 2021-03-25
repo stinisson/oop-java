@@ -30,38 +30,17 @@ public class Geometry extends JFrame{
 }
 
 
-class DrawingPanel extends JPanel implements MouseListener{
+
+
+class DrawingPanel extends JPanel {
 
     ArrayList<Figure> figures;
-    int mx, my;
 
     public DrawingPanel() {
         setBackground(Color.PINK);
-        addMouseListener(this);
-
-
-        MouseAdapter mouseAdapter = new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                System.out.println("mouseEntered");
-            }
-
-            public void mouseExited(MouseEvent e) {
-                System.out.println("mouseExited");
-            }
-        };
-        addMouseListener(mouseAdapter);
-
-        MouseAdapter mouseAdapter2 = new MouseAdapter() {
-            public void mouseMoved(MouseEvent e) {
-                System.out.println("mouseMoved");
-            }
-            public void mouseDragged(MouseEvent e) {
-                System.out.println("mouseDragged");
-            }
-        };
-        addMouseListener(mouseAdapter2);
-        addMouseMotionListener(mouseAdapter2);
-
+        MouseListener ml = new MouseListener(this);
+        addMouseListener (ml);
+        addMouseMotionListener(ml);
     }
 
     public void addFigures() {
@@ -83,36 +62,57 @@ class DrawingPanel extends JPanel implements MouseListener{
         }
     }
 
+    public Figure containsFigure(int mx, int my) {
 
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        mx = e.getX();
-        my = e.getY();
-        System.out.println("Klick vid ("+e.getX() + "," + e.getY()+")");
-        for (Figure figure : figures) {
-            figure.contains(mx, my);
+        for (int i = figures.size()-1; i >= 0; i--) {
+            if (figures.get(i).contains(mx, my)) {
+                return figures.get(i);
+            }
         }
+        return null;
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
-
+    public void moveFigure(Figure figure, int x, int y) {
+        figure.move(x, y);
+        repaint();
     }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-    }
-
-
 
 }
+
+class MouseListener extends MouseAdapter implements MouseMotionListener {
+
+    DrawingPanel drawingPanel;
+    Figure selectedFig;
+
+    public MouseListener (DrawingPanel p) {
+        drawingPanel = p;
+    }
+
+    public void mouseClicked (MouseEvent e) {
+        System.out.println("Klick vid ("+e.getX() + "," + e.getY()+")");
+    }
+
+    public void mousePressed (MouseEvent e) {
+        int mx = e.getX();
+        int my = e.getY();
+        selectedFig = drawingPanel.containsFigure(mx, my);
+    }
+
+    public void mouseDragged (MouseEvent e) {
+        int mx = e.getX();
+        int my = e.getY();
+        if (selectedFig != null) {
+            drawingPanel.moveFigure(selectedFig, mx, my);
+            int fidIdx = drawingPanel.figures.indexOf(selectedFig);
+            drawingPanel.figures.remove(fidIdx);
+            drawingPanel.figures.add(selectedFig);
+        }
+    }
+}
+
+// mx my
+// setPosition(x, y)
+// dx = mx - x
+// dy = my - y
+// x += dx
+// y += dy
