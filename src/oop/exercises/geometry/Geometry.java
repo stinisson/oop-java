@@ -88,10 +88,6 @@ class MouseListener extends MouseAdapter implements MouseMotionListener {
         drawingPanel = p;
     }
 
-    public void mouseClicked (MouseEvent e) {
-        System.out.println("Klick vid ("+e.getX() + "," + e.getY()+")");
-    }
-
     public void mousePressed (MouseEvent e) {
         int mx = e.getX();
         int my = e.getY();
