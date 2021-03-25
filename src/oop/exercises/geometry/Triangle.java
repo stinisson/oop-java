@@ -24,9 +24,8 @@ public class Triangle extends Figure{
     }
 
     @Override
-    public void setPosition(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Integer[] getPosition() {
+        return new Integer[]{x, y};
     }
 
     @Override

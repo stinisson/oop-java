@@ -44,7 +44,7 @@ abstract class Figure {
 
     abstract public boolean contains(int mx, int my);
 
-    abstract public void setPosition(int x, int y);
-
     abstract public void move(int x, int y);
+
+    abstract public Integer[] getPosition();
 }

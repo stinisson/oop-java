@@ -83,32 +83,36 @@ class MouseListener extends MouseAdapter implements MouseMotionListener {
 
     DrawingPanel drawingPanel;
     Figure selectedFig;
+    int mx, my;
+    int x, y;
+    int dx, dy;
 
     public MouseListener (DrawingPanel p) {
         drawingPanel = p;
     }
 
     public void mousePressed (MouseEvent e) {
-        int mx = e.getX();
-        int my = e.getY();
+        mx = e.getX();
+        my = e.getY();
         selectedFig = drawingPanel.containsFigure(mx, my);
-    }
 
-    public void mouseDragged (MouseEvent e) {
-        int mx = e.getX();
-        int my = e.getY();
         if (selectedFig != null) {
-            drawingPanel.moveFigure(selectedFig, mx, my);
+            x = selectedFig.getPosition()[0];
+            y = selectedFig.getPosition()[1];
+            dx = x - mx;
+            dy = y - my;
             int fidIdx = drawingPanel.figures.indexOf(selectedFig);
             drawingPanel.figures.remove(fidIdx);
             drawingPanel.figures.add(selectedFig);
+            drawingPanel.moveFigure(selectedFig, mx + dx, my + dy);
+        }
+    }
+
+    public void mouseDragged (MouseEvent e) {
+        mx = e.getX();
+        my = e.getY();
+        if (selectedFig != null) {
+            drawingPanel.moveFigure(selectedFig, mx + dx, my + dy);
         }
     }
 }
-
-// mx my
-// setPosition(x, y)
-// dx = mx - x
-// dy = my - y
-// x += dx
-// y += dy

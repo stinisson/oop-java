@@ -14,7 +14,6 @@ public class Circle extends Figure{
         int height = 2*r;
         g.setColor(super.getColor());
         g.fillOval(x-width/2, y-height/2, width, height);
-
     }
 
     @Override
@@ -23,19 +22,9 @@ public class Circle extends Figure{
     }
 
     @Override
-    public void setPosition(int x0, int y0) {
-        x = x0;
-        y = y0;
+    public Integer[] getPosition() {
+        return new Integer[]{x, y};
     }
-
-/*
-    public void move(Graphics g, int mx, int my) {
-        //undraw(g, Color.YELLOW);
-        x = mx;
-        y = my;
-        render(g);
-    }
-*/
 
     @Override
     public void move(int x0, int y0) {
