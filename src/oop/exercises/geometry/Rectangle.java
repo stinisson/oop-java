@@ -2,6 +2,7 @@ package oop.exercises.geometry;
 
 import java.awt.*;
 
+
 public class Rectangle extends Figure{
 
     public Rectangle(int x, int y) {
@@ -27,8 +28,8 @@ public class Rectangle extends Figure{
     }
 
     @Override
-    public void move(int x0, int y0) {
-        x = x0;
-        y = y0;
+    public void move(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 }

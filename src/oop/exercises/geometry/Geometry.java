@@ -2,7 +2,6 @@ package oop.exercises.geometry;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.ArrayList;
 
 
@@ -11,35 +10,30 @@ public class Geometry extends JFrame{
 
     public Geometry() {
         super("Geometry Tip Tap");
-        geometryPanel();
+        addDrawingPanel();
     }
 
-    public void geometryPanel() {
+    public void addDrawingPanel() {
         DrawingPanel drawingPanel = new DrawingPanel();
         add(drawingPanel);
         setBounds(d, d,d*6,d*6);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        System.out.println("close");
         setVisible(true);
         drawingPanel.addFigures();
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         Geometry geometry = new Geometry();
     }
 }
 
-
-
-
 class DrawingPanel extends JPanel {
-
     ArrayList<Figure> figures;
 
     public DrawingPanel() {
         setBackground(Color.PINK);
         MouseListener ml = new MouseListener(this);
-        addMouseListener (ml);
+        addMouseListener(ml);
         addMouseMotionListener(ml);
     }
 
@@ -63,7 +57,6 @@ class DrawingPanel extends JPanel {
     }
 
     public Figure containsFigure(int mx, int my) {
-
         for (int i = figures.size()-1; i >= 0; i--) {
             if (figures.get(i).contains(mx, my)) {
                 return figures.get(i);
@@ -75,44 +68,5 @@ class DrawingPanel extends JPanel {
     public void moveFigure(Figure figure, int x, int y) {
         figure.move(x, y);
         repaint();
-    }
-
-}
-
-class MouseListener extends MouseAdapter implements MouseMotionListener {
-
-    DrawingPanel drawingPanel;
-    Figure selectedFig;
-    int mx, my;
-    int x, y;
-    int dx, dy;
-
-    public MouseListener (DrawingPanel p) {
-        drawingPanel = p;
-    }
-
-    public void mousePressed (MouseEvent e) {
-        mx = e.getX();
-        my = e.getY();
-        selectedFig = drawingPanel.containsFigure(mx, my);
-
-        if (selectedFig != null) {
-            x = selectedFig.getPosition()[0];
-            y = selectedFig.getPosition()[1];
-            dx = x - mx;
-            dy = y - my;
-            int fidIdx = drawingPanel.figures.indexOf(selectedFig);
-            drawingPanel.figures.remove(fidIdx);
-            drawingPanel.figures.add(selectedFig);
-            drawingPanel.moveFigure(selectedFig, mx + dx, my + dy);
-        }
-    }
-
-    public void mouseDragged (MouseEvent e) {
-        mx = e.getX();
-        my = e.getY();
-        if (selectedFig != null) {
-            drawingPanel.moveFigure(selectedFig, mx + dx, my + dy);
-        }
     }
 }
