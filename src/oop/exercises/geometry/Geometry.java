@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 
 public class Geometry extends JFrame{
-    private static int d = 100;
+    private static final int d = 100;
 
     public Geometry() {
         super("Geometry Tip Tap");
@@ -41,7 +41,7 @@ class DrawingPanel extends JPanel {
         int pWidth = getWidth();
         int pHeight = getHeight();
 
-        figures = new ArrayList<Figure>(0);
+        figures = new ArrayList<>(0);
         figures.add(new Circle(pWidth/4, pHeight/4));
         figures.add(new Rectangle(pWidth*3/4, pHeight/4));
         figures.add(new Triangle(pWidth/2, pHeight/2));
