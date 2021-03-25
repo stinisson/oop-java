@@ -27,8 +27,7 @@ class MouseListener extends MouseAdapter implements MouseMotionListener {
             y = selectedFig.getPosition()[1];
             dx = x - mx;
             dy = y - my;
-            int fidIdx = drawingPanel.figures.indexOf(selectedFig);
-            drawingPanel.figures.remove(fidIdx);
+            drawingPanel.figures.remove(selectedFig);
             drawingPanel.figures.add(selectedFig);
             drawingPanel.moveFigure(selectedFig, mx + dx, my + dy);
         }
