@@ -17,13 +17,30 @@ public class GameBoard extends JPanel {
 
     public void addCardOutlines() {
 
+        int pWidth = getWidth();
+        int pHeight = getHeight();
+        System.out.println(pWidth);
+
+        int cardWidth = 71;
+        int space = 30;
+        int startPos = 55;
+
         outlines = new ArrayList<>(0);
-        outlines.add(new CardOutline(50, 50 ));
-        outlines.add(new CardOutline(141, 50));
-        outlines.add(new CardOutline(232, 50));
-        outlines.add(new CardOutline(323, 50));
-        outlines.add(new CardOutline(588, 50));
-        outlines.add(new CardOutline(679, 50));
+        outlines.add(new CardOutline(startPos, 50 ));
+        outlines.add(new CardOutline(startPos + space + cardWidth, 50));
+        outlines.add(new CardOutline(startPos + 2*space + 2*cardWidth, 50));
+        outlines.add(new CardOutline(startPos + 3*space + 3*cardWidth, 50));
+        outlines.add(new CardOutline(startPos + 5*space + 5*cardWidth, 50));
+        outlines.add(new CardOutline(startPos + 6*space + 6*cardWidth, 50));
+
+
+        outlines.add(new CardOutline(startPos, 200 ));
+        outlines.add(new CardOutline(startPos + space + cardWidth, 200));
+        outlines.add(new CardOutline(startPos + 2*space + 2*cardWidth, 200));
+        outlines.add(new CardOutline(startPos + 3*space + 3*cardWidth, 200));
+        outlines.add(new CardOutline(startPos + 4*space + 4*cardWidth, 200));
+        outlines.add(new CardOutline(startPos + 5*space + 5*cardWidth, 200));
+        outlines.add(new CardOutline(startPos + 6*space + 6*cardWidth, 200));
 
     }
 

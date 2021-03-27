@@ -30,7 +30,7 @@ public class Klondike extends JFrame implements ActionListener {
         add(buttonPanel, BorderLayout.NORTH);
         add(gameBoard, BorderLayout.CENTER);
 
-        setBounds(d, d,d*8,d*5);
+        setBounds(d, d,d*8,d*6);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
