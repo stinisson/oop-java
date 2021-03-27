@@ -37,7 +37,9 @@ public class Klondike extends JFrame implements ActionListener {
         newButton.addActionListener(this);
         fixButton.addActionListener(this);
         exitButton.addActionListener(this);
-        
+
+        gameBoard.addCardOutlines();
+
     }
 
     @Override
@@ -48,6 +50,7 @@ public class Klondike extends JFrame implements ActionListener {
             System.out.println("Fix Button clicked.");
         } else if (e.getSource() == exitButton) {
             System.out.println("Exit Button clicked.");
+            System.exit(0);
         }
 
     }
