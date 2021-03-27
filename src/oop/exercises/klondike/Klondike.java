@@ -39,6 +39,7 @@ public class Klondike extends JFrame implements ActionListener {
         exitButton.addActionListener(this);
 
         gameBoard.addCardOutlines();
+        gameBoard.addCard();
 
     }
 
