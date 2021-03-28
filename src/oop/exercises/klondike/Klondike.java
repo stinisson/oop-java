@@ -13,6 +13,7 @@ public class Klondike extends JFrame implements ActionListener {
     JButton newButton;
     JButton fixButton;
     JButton exitButton;
+    GameBoard gameBoard;
 
     public Klondike() throws IOException {
         super("Klondike");
@@ -26,7 +27,7 @@ public class Klondike extends JFrame implements ActionListener {
         buttonPanel.add(fixButton);
         buttonPanel.add(exitButton);
 
-        GameBoard gameBoard = new GameBoard();
+        gameBoard = new GameBoard();
 
         add(buttonPanel, BorderLayout.NORTH);
         add(gameBoard, BorderLayout.CENTER);
@@ -40,16 +41,17 @@ public class Klondike extends JFrame implements ActionListener {
         exitButton.addActionListener(this);
 
         gameBoard.addCardOutlines();
-        gameBoard.addStock();
-        gameBoard.repaint();
+        gameBoard.dealCards(false);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == newButton) {
             System.out.println("New Button clicked.");
+            gameBoard.dealCards(false);
         } else if (e.getSource() == fixButton) {
             System.out.println("Fix Button clicked.");
+            gameBoard.dealCards(true);
         } else if (e.getSource() == exitButton) {
             System.out.println("Exit Button clicked.");
             System.exit(0);

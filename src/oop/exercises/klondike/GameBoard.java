@@ -1,22 +1,29 @@
 package oop.exercises.klondike;
 
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 
-public class GameBoard extends JPanel {
+public class GameBoard extends JPanel implements MouseListener {
 
     int yUpperRow = 50;
     int yLowerRow = 200;
+    boolean fix;
 
     ArrayList<CardOutline> outlines;
     private static int cardWidth, space, startPos;
     Stock stock;
+    WastePile wastePile;
     boolean resourcesLoaded = false;
 
     public GameBoard() {
         setBackground(Color.GREEN);
+        addMouseListener(this);
+
     }
 
     public void addCardOutlines() {
@@ -44,26 +51,79 @@ public class GameBoard extends JPanel {
 
     }
 
+/*
     public void addStock() {
-        stock = new Stock(startPos + 5*space + 5*cardWidth, yUpperRow);
+        stock = new Stock(startPos + 5*space + 5*cardWidth, yUpperRow, fix);
         resourcesLoaded = true;
     }
+
+    public void addWastePile() {
+        wastePile = new WastePile(startPos + 6*space + 6*cardWidth, yUpperRow);
+    }
+*/
 
     public void paintComponent(Graphics g) {
         if (!resourcesLoaded) {
             return;
         }
-
         super.paintComponent(g);
         for (CardOutline outline : outlines) {
             outline.render(g);
         }
-
         for (Card card : stock.getStockCards()) {
             card.render(g, this);
         }
 
+        for (Card card : wastePile.getWastePileCards()) {
+            card.render(g, this);
+        }
 
+    }
+
+    public void stockAction(int mx, int my) {
+        if (stock.isEmpty()) {
+            return;
+        }
+
+        if (stock.getTopCard().contains(mx, my)) {
+            Card wasteCard = stock.getTopCard();
+            wastePile.addCard(wasteCard);
+            stock.removeTopCard();
+            repaint();
+        }
+    }
+
+    public void dealCards(boolean fix) {
+        stock = new Stock(startPos + 5*space + 5*cardWidth, yUpperRow, fix);
+        wastePile = new WastePile(startPos + 6*space + 6*cardWidth, yUpperRow);
+        resourcesLoaded = true;
+        repaint();
+    }
+
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        int mx = e.getX();
+        int my = e.getY();
+        System.out.println("Click at " + mx + " " + my);
+        stockAction(mx, my);
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
     }
 
 }

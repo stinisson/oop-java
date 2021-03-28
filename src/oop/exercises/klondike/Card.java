@@ -8,16 +8,21 @@ import java.io.IOException;
 
 public class Card {
 
+    int cardWidth = 71;
+    int cardHeight = 96;
     int x, y;
     boolean isUp = false;
     BufferedImage frontImage, backImage;
+    private static final String[] colors = {"c", "d", "h", "s"};
+    private static final String[] values = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k"};
 
-    public Card(int x, int y) {
+    public Card(int x, int y, int color, int value) {
         this.x = x;
         this.y = y;
 
+        String cardValue = colors[color] + values[value];
         try {
-            frontImage = ImageIO.read(new File("src/oop/exercises/klondike/images/c1.gif"));
+            frontImage = ImageIO.read(new File("src/oop/exercises/klondike/images/" + cardValue + ".gif"));
             backImage = ImageIO.read(new File("src/oop/exercises/klondike/images/b1fv.gif"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -31,5 +36,11 @@ public class Card {
         } else {
             g.drawImage(backImage, x, y, observer);
         }
+    }
+
+
+    public boolean contains(int mx, int my) {
+        System.out.println("In contains: " + (mx > x && mx <= x+cardWidth && my > y && my <= y+cardHeight));
+        return mx > x && mx <= x+cardWidth && my > y && my <= y+cardHeight;
     }
 }
