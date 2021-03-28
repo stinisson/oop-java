@@ -1,6 +1,5 @@
 package oop.exercises.klondike;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class Stock {
@@ -11,7 +10,7 @@ public class Stock {
     public Stock(int x, int y) {
 
         stockCards = new ArrayList<>(deck);
-        for (int i = 0; i < deck + 1; i ++) {
+        for (int i = 0; i < deck; i ++) {
            Card card = new Card(x, y);
            stockCards.add(card);
         }
