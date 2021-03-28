@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class Klondike extends JFrame implements ActionListener {
 
@@ -13,7 +14,7 @@ public class Klondike extends JFrame implements ActionListener {
     JButton fixButton;
     JButton exitButton;
 
-    public Klondike() {
+    public Klondike() throws IOException {
         super("Klondike");
 
         newButton = new JButton("New");
@@ -39,8 +40,8 @@ public class Klondike extends JFrame implements ActionListener {
         exitButton.addActionListener(this);
 
         gameBoard.addCardOutlines();
-        gameBoard.addCard();
-
+        gameBoard.addStock();
+        gameBoard.repaint();
     }
 
     @Override
@@ -57,7 +58,11 @@ public class Klondike extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        Klondike klondike = new Klondike();
+        try {
+            Klondike klondike = new Klondike();
+        } catch (IOException e) {
+            System.out.println("Error, couldn't read images");
+        }
     }
 
 
