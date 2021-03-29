@@ -43,4 +43,8 @@ public class Card {
         System.out.println("In contains: " + (mx > x && mx <= x+cardWidth && my > y && my <= y+cardHeight));
         return mx > x && mx <= x+cardWidth && my > y && my <= y+cardHeight;
     }
+
+    public Integer[] getPosition() {
+        return null;
+    }
 }

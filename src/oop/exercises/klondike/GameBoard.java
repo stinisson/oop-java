@@ -3,17 +3,13 @@ package oop.exercises.klondike;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 
-public class GameBoard extends JPanel implements MouseListener {
+public class GameBoard extends JPanel {
 
     int yUpperRow = 50;
     int yLowerRow = 200;
-    boolean fix;
-
     ArrayList<CardOutline> outlines;
     private static int cardWidth, space, startPos;
     Stock stock;
@@ -22,8 +18,9 @@ public class GameBoard extends JPanel implements MouseListener {
 
     public GameBoard() {
         setBackground(Color.GREEN);
-        addMouseListener(this);
-
+        MouseListener ml = new MouseListener(this);
+        addMouseListener(ml);
+        addMouseMotionListener(ml);
     }
 
     public void addCardOutlines() {
@@ -50,17 +47,6 @@ public class GameBoard extends JPanel implements MouseListener {
         outlines.add(new CardOutline(startPos + 6*space + 6*cardWidth, yLowerRow));
 
     }
-
-/*
-    public void addStock() {
-        stock = new Stock(startPos + 5*space + 5*cardWidth, yUpperRow, fix);
-        resourcesLoaded = true;
-    }
-
-    public void addWastePile() {
-        wastePile = new WastePile(startPos + 6*space + 6*cardWidth, yUpperRow);
-    }
-*/
 
     public void paintComponent(Graphics g) {
         if (!resourcesLoaded) {
@@ -100,7 +86,15 @@ public class GameBoard extends JPanel implements MouseListener {
         repaint();
     }
 
+    public Card containsCard(int mx, int my) {
+        return null;
+    }
 
+    public void moveCard(Card card, int x, int y) {
+
+    }
+
+/*
     @Override
     public void mouseClicked(MouseEvent e) {
         int mx = e.getX();
@@ -108,8 +102,8 @@ public class GameBoard extends JPanel implements MouseListener {
         System.out.println("Click at " + mx + " " + my);
         stockAction(mx, my);
 
-    }
-
+    }*/
+/*
     @Override
     public void mousePressed(MouseEvent e) {
     }
@@ -124,6 +118,6 @@ public class GameBoard extends JPanel implements MouseListener {
 
     @Override
     public void mouseExited(MouseEvent e) {
-    }
+    }*/
 
 }
