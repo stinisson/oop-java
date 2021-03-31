@@ -1,4 +1,4 @@
-package oop.exercises.klondike;
+package oop.exercises.napoleonsTomb;
 
 
 import java.awt.event.MouseAdapter;
