@@ -40,7 +40,7 @@ public class NapoleonsTomb extends JFrame implements ActionListener {
         fixButton.addActionListener(this);
         exitButton.addActionListener(this);
 
-        gameBoard.addCardOutlines();
+        gameBoard.setUpBoard();
         gameBoard.dealCards(false);
     }
 

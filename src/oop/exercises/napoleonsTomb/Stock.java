@@ -14,33 +14,34 @@ public class Stock extends Pile {
     }
 
     public void dealCards(boolean fixedOrder) {
+
         for (int color = 0; color < nColors; color++) {
             for (int value = 0; value < nValues; value++) {
                 Card card = new Card(x, y, color, value);
-                stockCards.add(card);
+                cards.add(card);
             }
         }
         if (fixedOrder) {
-            Collections.shuffle(stockCards, new Random(3));
+            Collections.shuffle(cards, new Random(3));
         } else {
-            Collections.shuffle(stockCards);
+            Collections.shuffle(cards);
         }
     }
 
     public ArrayList<Card> getStockCards() {
-        return stockCards;
+        return cards;
     }
 
     public Card getTopCard() {
-        return stockCards.get(stockCards.size() - 1);
+        return cards.get(cards.size() - 1);
     }
 
     public void removeTopCard() {
-        stockCards.remove(stockCards.size() - 1);
+        cards.remove(cards.size() - 1);
     }
 
     public boolean isEmpty() {
-        return stockCards.isEmpty();
+        return cards.isEmpty();
     }
 
 }

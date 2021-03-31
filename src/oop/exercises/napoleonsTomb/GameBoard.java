@@ -21,6 +21,7 @@ public class GameBoard extends JPanel {
         MouseListener ml = new MouseListener(this);
         addMouseListener(ml);
         addMouseMotionListener(ml);
+
     }
 
     public void addCardOutlines() {
@@ -53,16 +54,13 @@ public class GameBoard extends JPanel {
             return;
         }
         super.paintComponent(g);
-        for (CardOutline outline : outlines) {
-            outline.render(g);
-        }
-        for (Card card : stock.getStockCards()) {
-            card.render(g, this);
-        }
 
-        for (Card card : wastePile.getWastePileCards()) {
-            card.render(g, this);
-        }
+        stock.render(g, this);
+
+
+//        for (Card card : wastePile.getWastePileCards()) {
+//            card.render(g, this);
+//        }
 
     }
 
@@ -79,10 +77,14 @@ public class GameBoard extends JPanel {
         }
     }
 
+    public void setUpBoard() {
+        stock = new Stock(startPos + 5*space + 5*cardWidth, yUpperRow);
+    }
 
-    public void dealCards(boolean fix) {
-        stock = new Stock(startPos + 5*space + 5*cardWidth, yUpperRow, fix);
-        wastePile = new WastePile(startPos + 6*space + 6*cardWidth, yUpperRow);
+
+    public void dealCards(boolean fixedOrder) {
+        //stock = new Stock(startPos + 5*space + 5*cardWidth, yUpperRow, fixedOrder);
+        //wastePile = new WastePile(startPos + 6*space + 6*cardWidth, yUpperRow);
         resourcesLoaded = true;
         repaint();
     }

@@ -20,8 +20,13 @@ abstract class Pile {
         cards.clear();
     }
 
-    protected void render(Graphics g) {
+    protected void render(Graphics g, java.awt.image.ImageObserver observer) {
+
         cardOutline.render(g);
+
+        for (Card card : cards) {
+            card.render(g, observer);
+        }
     }
 
 }
