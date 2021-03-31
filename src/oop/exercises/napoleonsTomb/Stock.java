@@ -15,6 +15,8 @@ public class Stock extends Pile {
 
     public void dealCards(boolean fixedOrder) {
 
+        clearCards();
+
         for (int color = 0; color < nColors; color++) {
             for (int value = 0; value < nValues; value++) {
                 Card card = new Card(x, y, color, value);

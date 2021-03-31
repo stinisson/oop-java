@@ -14,6 +14,7 @@ public class GameBoard extends JPanel {
     private static int cardWidth, space, startPos;
     Stock stock;
     WastePile wastePile;
+    //Foundation[4]
     boolean resourcesLoaded = false;
 
     public GameBoard() {
@@ -56,6 +57,7 @@ public class GameBoard extends JPanel {
         super.paintComponent(g);
 
         stock.render(g, this);
+        wastePile.render(g, this);
 
 
 //        for (Card card : wastePile.getWastePileCards()) {
@@ -78,11 +80,21 @@ public class GameBoard extends JPanel {
     }
 
     public void setUpBoard() {
+        int pWidth = getWidth();
+        cardWidth = 71;
+        space = 30;
+        startPos = (pWidth - 7 * cardWidth - 6 * space)/2;
+
         stock = new Stock(startPos + 5*space + 5*cardWidth, yUpperRow);
+        wastePile = new WastePile(startPos + 6*space + 6*cardWidth, yUpperRow);
+        //foundation[0] = new Foundation([x, y])
+        //foundation[1] = new Foundation([x, y])
     }
 
 
     public void dealCards(boolean fixedOrder) {
+        stock.dealCards(fixedOrder);
+        wastePile.clearCards();
         //stock = new Stock(startPos + 5*space + 5*cardWidth, yUpperRow, fixedOrder);
         //wastePile = new WastePile(startPos + 6*space + 6*cardWidth, yUpperRow);
         resourcesLoaded = true;
