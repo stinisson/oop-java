@@ -32,7 +32,8 @@ public class NapoleonsTomb extends JFrame implements ActionListener {
         add(buttonPanel, BorderLayout.NORTH);
         add(gameBoard, BorderLayout.CENTER);
 
-        setBounds(d, d,d*8,d*6);
+        setBounds(d, d,d*8+12, d*5+71);
+        // diff width = 12, digg height = 71
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 
@@ -61,7 +62,7 @@ public class NapoleonsTomb extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         try {
-            NapoleonsTomb klondike = new NapoleonsTomb();
+            NapoleonsTomb napoleonsTomb = new NapoleonsTomb();
         } catch (IOException e) {
             System.out.println("Error, couldn't read images");
         }
