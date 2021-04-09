@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class WastePile extends Pile {
 
-    public WastePile(int x, int y) {
+    protected WastePile(int x, int y) {
         super(x, y);
     }
 

@@ -46,3 +46,80 @@ Parking
 (6 * cardWidth + 7 * margin, 2 * cardHeight + 3 * margin + offset)
 ----------------------------------------------------------------------------------------------------
 
+wastePile00 = new WastePile(margin, margin + offset);
+wastePile01= new WastePile(cardWidth + 2 * margin - offset, margin);
+wastePile02= new WastePile(2 * cardWidth + 3 * margin, margin + offset);
+wastePile03= new WastePile(3 * cardWidth + 4 * margin + offset, margin);
+wastePile04= new WastePile(4 * cardWidth + 5 * margin, margin + offset);
+wastePile05= new WastePile(5 * cardWidth + 6 * margin, margin + offset);
+wastePile06= new WastePile(6 * cardWidth + 7 * margin, margin + offset);
+
+wastePile10 = new WastePile(margin, cardHeight + 2 * margin + offset);
+wastePile11= new WastePile(cardWidth + 2 * margin, cardHeight+ 2 * margin + offset);
+wastePile12= new WastePile(2 * cardWidth + 3 * margin, cardHeight+ 2 * margin + offset);
+wastePile13= new WastePile(3 * cardWidth + 4 * margin, cardHeight+ 2 * margin + offset);
+wastePile14= new WastePile(4 * cardWidth + 5 * margin, cardHeight+ 2 * margin + offset);
+wastePile15= new WastePile(5 * cardWidth + 6 * margin, cardHeight+ 2 * margin + offset);
+wastePile16= new WastePile(6 * cardWidth + 7 * margin, cardHeight+ 2 * margin + offset);
+
+wastePile20 = new WastePile(margin, 2 * cardHeight + 3 * margin + offset);
+wastePile21= new WastePile(cardWidth + 2 * margin - offset, 2 * cardHeight + 3 * margin + 2 * offset);
+wastePile22= new WastePile(2 * cardWidth + 3 * margin, 2 * cardHeight + 3 * margin + offset);
+wastePile23= new WastePile(3 * cardWidth + 4 * margin + offset, 2 * cardHeight + 3 * margin + 2 * offset);
+wastePile24= new WastePile(4 * cardWidth + 5 * margin, 2 * cardHeight + 3 * margin + offset);
+wastePile25= new WastePile(5 * cardWidth + 6 * margin, 2 * cardHeight + 3 * margin + offset);
+wastePile26= new WastePile(6 * cardWidth + 7 * margin, 2 * cardHeight + 3 * margin + offset);
+------------------------------------------------------------------------------------------------------------------------
+
+
+Pile00 = new WastePile(margin, margin + offset);
+Pile01= new WastePile(cardWidth + 2 * margin - offset, margin);
+Pile02= new WastePile(2 * cardWidth + 3 * margin, margin + offset);
+Pile03= new WastePile(3 * cardWidth + 4 * margin + offset, margin);
+Pile04= new WastePile(4 * cardWidth + 5 * margin, margin + offset);
+Pile05= new WastePile(5 * cardWidth + 6 * margin, margin + offset);
+Pile06= new WastePile(6 * cardWidth + 7 * margin, margin + offset);
+
+Pile10 = new WastePile(margin, cardHeight + 2 * margin + offset);
+Pile11= new WastePile(cardWidth + 2 * margin, cardHeight+ 2 * margin + offset);
+Pile12= new WastePile(2 * cardWidth + 3 * margin, cardHeight+ 2 * margin + offset);
+Pile13= new WastePile(3 * cardWidth + 4 * margin, cardHeight+ 2 * margin + offset);
+Pile14= new WastePile(4 * cardWidth + 5 * margin, cardHeight+ 2 * margin + offset);
+Pile15= new WastePile(5 * cardWidth + 6 * margin, cardHeight+ 2 * margin + offset);
+Pile16= new WastePile(6 * cardWidth + 7 * margin, cardHeight+ 2 * margin + offset);
+
+Pile20 = new WastePile(margin, 2 * cardHeight + 3 * margin + offset);
+Pile21= new WastePile(cardWidth + 2 * margin - offset, 2 * cardHeight + 3 * margin + 2 * offset);
+Pile22= new WastePile(2 * cardWidth + 3 * margin, 2 * cardHeight + 3 * margin + offset);
+Pile23= new WastePile(3 * cardWidth + 4 * margin + offset, 2 * cardHeight + 3 * margin + 2 * offset);
+Pile24= new WastePile(4 * cardWidth + 5 * margin, 2 * cardHeight + 3 * margin + offset);
+Pile25= new WastePile(5 * cardWidth + 6 * margin, 2 * cardHeight + 3 * margin + offset);
+Pile26= new WastePile(6 * cardWidth + 7 * margin, 2 * cardHeight + 3 * margin + offset);
+
+-------------------------------------------------------------------------------------------------------------------
+
+Pile00 = new WastePile(0*cardWidth +1*margin, margin + offsetY);
+Pile01= new WastePile(cardWidth + 2 * margin - offsetX, margin - offsetY+ offsetY);
+Pile02= new WastePile(2*cardWidth + 3*margin, margin + offsetY);
+Pile03= new WastePile(3*cardWidth + 4*margin+offsetX, margin- offsetY + offsetY);
+Pile04= new WastePile(4*cardWidth + 5*margin, margin + offsetY);
+Pile05= new WastePile(5*cardWidth + 6*margin, margin + offsetY);
+Pile06= new WastePile(6*cardWidth + 7*margin, margin + offsetY);
+
+Pile10 = new WastePile(0*cardWidth +1*margin, 1*cardHeight+ 2*margin+offsetY);
+Pile11= new WastePile(1*cardWidth + 2*margin, 1*cardHeight+ 2*margin+offsetY);
+Pile12= new WastePile(2*cardWidth + 3*margin, 1*cardHeight+ 2*margin+offsetY);
+Pile13= new WastePile(3*cardWidth + 4*margin, 1*cardHeight+ 2*margin+offsetY);
+Pile14= new WastePile(4*cardWidth + 5*margin, 1*cardHeight+ 2*margin+offsetY);
+Pile15= new WastePile(5*cardWidth + 6*margin, 1*cardHeight+ 2*margin+offsetY);
+Pile16= new WastePile(6*cardWidth + 7*margin, 1*cardHeight+ 2*margin+offsetY);
+
+Pile20 = new WastePile(0*cardWidth +1*margin, 2*cardHeight+ 3*margin+offsetY);
+Pile21= new WastePile(1*cardWidth + 2*margin - offsetX, 2*cardHeight+ 3*margin + offsetY+offsetY);
+Pile22= new WastePile(2*cardWidth + 3*margin, 2*cardHeight+ 3*margin+offsetY);
+Pile23= new WastePile(3*cardWidth + 4*margin + offsetX, 2*cardHeight+ 3*margin + offsetY+offsetY);
+Pile24= new WastePile(4*cardWidth + 5*margin, 2*cardHeight+ 3*margin+offsetY);
+Pile25= new WastePile(5*cardWidth + 6*margin, 2*cardHeight+ 3*margin+offsetY);
+Pile26= new WastePile(6*cardWidth + 7*margin, 2*cardHeight+ 3*margin+offsetY);
+
+
