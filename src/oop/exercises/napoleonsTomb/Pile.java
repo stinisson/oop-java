@@ -29,4 +29,23 @@ abstract class Pile {
         }
     }
 
+    public Card getTopCard() {
+        return cards.get(cards.size() - 1);
+    }
+
+    public void removeTopCard() {
+        cards.remove(cards.size() - 1);
+    }
+
+    public boolean isEmpty() {
+        return cards.isEmpty();
+    }
+
+    public void addCard(Card card) {
+        card.x = x;
+        card.y = y;
+        card.isUp = true;
+        cards.add(card);
+    }
+
 }

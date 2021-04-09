@@ -1,6 +1,5 @@
 package oop.exercises.napoleonsTomb;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
@@ -28,22 +27,6 @@ public class Stock extends Pile {
         } else {
             Collections.shuffle(cards);
         }
-    }
-
-    public ArrayList<Card> getStockCards() {
-        return cards;
-    }
-
-    public Card getTopCard() {
-        return cards.get(cards.size() - 1);
-    }
-
-    public void removeTopCard() {
-        cards.remove(cards.size() - 1);
-    }
-
-    public boolean isEmpty() {
-        return cards.isEmpty();
     }
 
 }

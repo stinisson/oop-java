@@ -12,12 +12,5 @@ public class WastePile extends Pile {
         return cards;
     }
 
-    public void addCard(Card card) {
-        card.x = x;
-        card.y = y;
-        card.isUp = true;
-        cards.add(card);
-    }
-
 
 }
