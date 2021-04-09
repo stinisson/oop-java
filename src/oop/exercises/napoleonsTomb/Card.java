@@ -16,15 +16,20 @@ public class Card {
     private static final String[] colors = {"c", "d", "h", "s"};
     private static final String[] values = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k"};
     String parentPile;
+    private int cardValue;
+    private String cardColor;
 
     public Card(int x, int y, int color, int value, String parentPile) {
         this.x = x;
         this.y = y;
+        cardValue = value + 1;
+        cardColor = colors[color];
         this.parentPile = parentPile;
 
-        String cardValue = colors[color] + values[value];
+        String cardName = colors[color] + values[value];
+
         try {
-            frontImage = ImageIO.read(new File("src/oop/exercises/klondike/images/" + cardValue + ".gif"));
+            frontImage = ImageIO.read(new File("src/oop/exercises/klondike/images/" + cardName + ".gif"));
             backImage = ImageIO.read(new File("src/oop/exercises/klondike/images/b1fv.gif"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -48,6 +53,14 @@ public class Card {
 
     public Integer[] getPosition() {
         return new Integer[]{x, y};
+    }
+
+    public int getCardValue() {
+        return cardValue;
+    }
+
+    public String getCardColor() {
+        return cardColor;
     }
 
 
