@@ -8,8 +8,8 @@ public class Stock extends Pile {
     private static final int nColors = 4;
     private static final int nValues = 13;
 
-    public Stock(int x, int y) {
-        super(x, y);
+    public Stock(int x, int y, String name) {
+        super(x, y, name);
     }
 
     public void dealCards(boolean fixedOrder) {
@@ -18,7 +18,7 @@ public class Stock extends Pile {
 
         for (int color = 0; color < nColors; color++) {
             for (int value = 0; value < nValues; value++) {
-                Card card = new Card(x, y, color, value);
+                Card card = new Card(x, y, color, value, "stock");
                 cards.add(card);
             }
         }

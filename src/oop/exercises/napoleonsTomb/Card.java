@@ -15,10 +15,12 @@ public class Card {
     BufferedImage frontImage, backImage;
     private static final String[] colors = {"c", "d", "h", "s"};
     private static final String[] values = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k"};
+    String parentPile;
 
-    public Card(int x, int y, int color, int value) {
+    public Card(int x, int y, int color, int value, String parentPile) {
         this.x = x;
         this.y = y;
+        this.parentPile = parentPile;
 
         String cardValue = colors[color] + values[value];
         try {
@@ -45,6 +47,14 @@ public class Card {
     }
 
     public Integer[] getPosition() {
-        return null;
+        return new Integer[]{x, y};
     }
+
+
+    public void move(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+
 }
