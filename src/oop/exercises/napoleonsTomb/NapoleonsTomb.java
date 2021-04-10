@@ -9,18 +9,24 @@ import java.io.IOException;
 
 public class NapoleonsTomb extends JFrame implements ActionListener {
 
-    private static int d = 100;
     JButton newButton;
     JButton fixButton;
     JButton exitButton;
     GameBoard gameBoard;
+    public int windowWidth = 812;
+    public int windowHeight = 571;
 
     public NapoleonsTomb() throws IOException {
         super("Napoleon's Tomb");
 
-        newButton = new JButton("New");
-        fixButton = new JButton("Fix");
+        newButton = new JButton("New game");
+        fixButton = new JButton("Fixed order");
         exitButton = new JButton("Exit");
+
+        Dimension buttonDimension = new Dimension(100, 26);
+        newButton.setPreferredSize(buttonDimension);
+        fixButton.setPreferredSize(buttonDimension);
+        exitButton.setPreferredSize(buttonDimension);
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(newButton);
@@ -31,9 +37,14 @@ public class NapoleonsTomb extends JFrame implements ActionListener {
 
         add(buttonPanel, BorderLayout.NORTH);
         add(gameBoard, BorderLayout.CENTER);
+        Color darkGreen = new Color(6, 95, 69, 255);
+        buttonPanel.setBackground(darkGreen);
 
-        setBounds(d, d,d*8+12, d*5+71);
-        // diff width = 12, digg height = 71
+        int d = 100;
+        setBounds(d, d, windowWidth, windowHeight);
+        //setBounds(d, d,d*8, d*5);
+        //setBounds(d, d, d *8+12, d *5+71);
+        // diff width = 12, diff height = 71
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setVisible(true);
 

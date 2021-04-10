@@ -65,4 +65,7 @@ abstract class Pile {
         return dx < range && dy < range;
     }
 
+
+    // getCards()
+
 }
