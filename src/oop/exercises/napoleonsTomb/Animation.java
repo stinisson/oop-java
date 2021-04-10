@@ -8,7 +8,7 @@ public class Animation {
 
     protected final ArrayList<AnimationCard> animationCards;
     private static final int timeStep = 33;
-    private static final int animationLength = 5000;
+    private static final int animationLength = 10000;
     int animationTime = 0;
 
     public Animation() {
@@ -19,6 +19,14 @@ public class Animation {
         if (animationTime > animationLength) {
             clearCards();
             return false;
+        }
+
+        for (AnimationCard animationCard: animationCards) {
+            boolean hasBottom = true;
+            if (animationTime > 5000) {
+                hasBottom = false;
+            }
+            animationCard.step(hasBottom);
         }
 
         try {

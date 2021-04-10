@@ -35,6 +35,7 @@ public class GameBoard extends JPanel {
         }
 
         if (winAnimation != null) {
+            System.out.println("ritar");
             winAnimation.render(g, this);
         }
 
@@ -86,7 +87,7 @@ public class GameBoard extends JPanel {
         piles.put("parking", new Parking(6 * cardWidth + 7 * margin, 2 * cardHeight + 3 * margin + offset, "parking"));
     }
 
-/*    public void dealCards(boolean fixedOrder) {
+    public void dealCards(boolean fixedOrder) {
         for (Pile pile : piles.values()) {
             pile.clearCards();
         }
@@ -102,8 +103,9 @@ public class GameBoard extends JPanel {
         }
         resourcesLoaded = true;
         repaint();
-    }*/
+    }
 
+    /*
     public void dealCards(boolean fixedOrder) {
         for (Pile pile : piles.values()) {
             pile.clearCards();
@@ -121,7 +123,7 @@ public class GameBoard extends JPanel {
             }
         }
 
-        for (int i = 0; i < 6 * 4; i++) {
+        for (int i = 0; i < 6 * 4 - 1; i++) {
             Card dealCard = piles.get("stock").getTopCard();
             piles.get("stock").removeTopCard();
             dealCard.parentPile = "foundationM";
@@ -133,6 +135,8 @@ public class GameBoard extends JPanel {
 
         checkWin();
     }
+    */
+
 
     public Card containsCard(int mx, int my) {
         for (Pile pile : piles.values()) {
@@ -159,8 +163,8 @@ public class GameBoard extends JPanel {
         for (Pile pile : piles.values()) {
             if (pile.put(movingCard)) {
                 movingCard = null;
-                repaint();
                 checkWin();
+                repaint();
                 return;
             }
         }
@@ -181,7 +185,9 @@ public class GameBoard extends JPanel {
             for (Pile pile : piles.values()) {
                 pile.clearCards();
             }
-            runAnimation();
+            new Thread(() -> {
+                runAnimation();
+            }).start();
             return true;
         }
         System.out.println("In has won, haven't won yet. Not all piles are empty!");
@@ -190,11 +196,8 @@ public class GameBoard extends JPanel {
 
     private void runAnimation() {
         while (winAnimation.step()) {
+            System.out.println("rita");
             repaint();
         }
     }
-
-
-
-
 }

@@ -7,7 +7,6 @@ public class Foundation7 extends Pile {
     }
 
     public boolean put(Card card) {
-
         if (inRange(card)) {
 
             if (isEmpty() && card.getCardValue() == 7) {
