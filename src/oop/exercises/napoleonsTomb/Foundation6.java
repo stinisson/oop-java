@@ -10,9 +10,25 @@ public class Foundation6 extends Pile {
         System.out.println(card.getCardColor());
 
         if (inRange(card)) {
-            card.parentPile = name;
-            addCard(card);
-            return true;
+
+            if (isEmpty() && card.getCardValue() == 6) {
+                card.parentPile = name;
+                addCard(card);
+                return true;
+            }
+            
+            if (!isEmpty() && card.getCardValue() == getTopCard().getCardValue() - 1) {
+                card.parentPile = name;
+                addCard(card);
+                return true;
+            }
+
+            if (!isEmpty() && getTopCard().getCardValue() == 1 && card.getCardValue() == 6) {
+                card.parentPile = name;
+                addCard(card);
+                return true;
+            }
+
         }
         return false;
     }
