@@ -34,7 +34,6 @@ public class Card {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void render(Graphics g, java.awt.image.ImageObserver observer) {
@@ -44,7 +43,6 @@ public class Card {
             g.drawImage(backImage, x, y, observer);
         }
     }
-
 
     public boolean contains(int mx, int my) {
         return mx > x && mx <= x+ width && my > y && my <= y+ height;
@@ -62,11 +60,12 @@ public class Card {
         return cardColor;
     }
 
-
     public void move(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-
+    public void setParent(String parent) {
+        parentPile = parent;
+    }
 }

@@ -8,19 +8,17 @@ public class Foundation7 extends Pile {
 
     public boolean put(Card card) {
 
-        System.out.println(card.getCardColor());
-
         if (inRange(card)) {
 
             if (isEmpty() && card.getCardValue() == 7) {
                 card.parentPile = name;
-                addCard(card);
+                addCard(card, true);
                 return true;
             }
 
             if (!isEmpty() && card.getCardValue() == getTopCard().getCardValue() + 1) {
                 card.parentPile = name;
-                addCard(card);
+                addCard(card, true);
                 return true;
             }
 

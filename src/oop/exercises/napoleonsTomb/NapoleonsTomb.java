@@ -48,13 +48,10 @@ public class NapoleonsTomb extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == newButton) {
-            System.out.println("New Button clicked.");
             gameBoard.dealCards(false);
         } else if (e.getSource() == fixButton) {
-            System.out.println("Fix Button clicked.");
             gameBoard.dealCards(true);
         } else if (e.getSource() == exitButton) {
-            System.out.println("Exit Button clicked.");
             System.exit(0);
         }
 

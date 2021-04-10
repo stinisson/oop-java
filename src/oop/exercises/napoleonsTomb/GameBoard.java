@@ -10,6 +10,7 @@ public class GameBoard extends JPanel {
     boolean resourcesLoaded = false;
     HashMap<String, Pile> piles;
     Card movingCard;
+    int stockRoundCount = 1;
 
     public GameBoard() {
         setBackground(Color.GREEN);
@@ -36,16 +37,29 @@ public class GameBoard extends JPanel {
 
     public void stockAction(int mx, int my) {
         if (piles.get("stock").isEmpty()) {
+            if (stockRoundCount > 0) {
+                stockRoundCount =- 1;
+                while (!piles.get("wastePile").isEmpty()) {
+                    Card wasteCard = piles.get("wastePile").getTopCard();
+                    piles.get("wastePile").removeTopCard();
+                    wasteCard.setParent("stock");
+                    //wasteCard.parentPile = "stock";
+                    //wasteCard.turnCard();
+                    piles.get("stock").addCard(wasteCard, false);
+                }
+            }
             return;
         }
 
         if (piles.get("stock").getTopCard().contains(mx, my)) {
             Card wasteCard = piles.get("stock").getTopCard();
-            wasteCard.parentPile = "wastePile";
-            piles.get("wastePile").addCard(wasteCard);
             piles.get("stock").removeTopCard();
+            wasteCard.parentPile = "wastePile";
+            piles.get("wastePile").addCard(wasteCard, true);
             repaint();
         }
+
+
     }
 
     public void setUpBoard() {
@@ -83,13 +97,11 @@ public class GameBoard extends JPanel {
             Card dealCard = piles.get("stock").getTopCard();
             piles.get("stock").removeTopCard();
             dealCard.parentPile = tableau;
-            piles.get(tableau).addCard(dealCard);
+            piles.get(tableau).addCard(dealCard, true);
         }
-
         resourcesLoaded = true;
         repaint();
     }
-
 
 
     public Card containsCard(int mx, int my) {
@@ -123,8 +135,7 @@ public class GameBoard extends JPanel {
                 return;
             }
         }
-
-        piles.get(movingCard.parentPile).addCard(movingCard);
+        piles.get(movingCard.parentPile).addCard(movingCard, true);
         movingCard = null;
         repaint();
     }

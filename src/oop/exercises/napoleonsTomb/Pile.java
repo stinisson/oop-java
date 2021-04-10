@@ -47,10 +47,10 @@ abstract class Pile {
         return cards.isEmpty();
     }
 
-    public void addCard(Card card) {
+    public void addCard(Card card, boolean isUp) {
         card.x = x;
         card.y = y;
-        card.isUp = true;
+        card.isUp = isUp;
         cards.add(card);
     }
 

@@ -12,10 +12,9 @@ public class Tableau extends Pile {
 
             if (isEmpty()) {
                 card.parentPile = name;
-                addCard(card);
+                addCard(card, true);
                 return true;
             }
-
         }
         return false;
     }

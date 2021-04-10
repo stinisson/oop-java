@@ -15,25 +15,21 @@ public class CardOutline {
         this.x = x;
         this.y = y;
 
-        if (pileName.equals("foundationM")) {
-            try {
-                outline = ImageIO.read(new File("src/oop/exercises/napoleonsTomb/images/outlines/foundation6.png"));
-            } catch (IOException e) {
-                e.printStackTrace();
+        try {
+            switch (pileName) {
+                case "foundationM", "parking" ->
+                        outline = ImageIO.read(new File("src/oop/exercises/napoleonsTomb/images/outlines/foundation6.png"));
+                case "foundationLT", "foundationRT", "foundationLB", "foundationRB" ->
+                        outline = ImageIO.read(new File("src/oop/exercises/napoleonsTomb/images/outlines/foundation7.png"));
+                case "stock", "wastePile", "tableauT", "tableauB", "tableauLM", "tableauRM" ->
+                        outline = ImageIO.read(new File("src/oop/exercises/napoleonsTomb/images/outlines/foundation_empty.png"));
             }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     public void render(Graphics g, java.awt.image.ImageObserver observer) {
-/*        int width = 71;
-        int height = 96;
-        Graphics2D g2 = (Graphics2D) g;
-        g2.setStroke(new BasicStroke(2));
-        g.setColor(Color.PINK);
-        g.drawRect(x, y, width, height);*/
-
-
         g.drawImage(outline, x, y, observer);
-
     }
 }
