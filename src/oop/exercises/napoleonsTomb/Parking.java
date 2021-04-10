@@ -9,7 +9,7 @@ public class Parking extends Pile {
         System.out.println(card.getCardValue());
 
 
-        if (inRange(card) && card.getCardValue() == 6) {
+        if (inRange(card) && card.getCardValue() == 6 && isEmpty()) {
             card.parentPile = name;
             addCard(card);
             return true;

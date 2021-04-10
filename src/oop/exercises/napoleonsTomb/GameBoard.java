@@ -72,8 +72,20 @@ public class GameBoard extends JPanel {
     }
 
     public void dealCards(boolean fixedOrder) {
+        for (Pile pile : piles.values()) {
+            pile.clearCards();
+        }
         ((Stock) piles.get("stock")).dealCards(fixedOrder);
-        piles.get("wastePile").clearCards();
+
+        String dealTableau[] = {"tableauT", "tableauLM", "tableauRM", "tableauB"};
+
+        for (String tableau : dealTableau) {
+            Card dealCard = piles.get("stock").getTopCard();
+            piles.get("stock").removeTopCard();
+            dealCard.parentPile = tableau;
+            piles.get(tableau).addCard(dealCard);
+        }
+
         resourcesLoaded = true;
         repaint();
     }
@@ -81,7 +93,6 @@ public class GameBoard extends JPanel {
 
 
     public Card containsCard(int mx, int my) {
-
         for (Pile pile : piles.values()) {
             if (!pile.isEmpty() && !pile.getName().equals("stock")) {
                 if (pile.getTopCard().contains(mx, my)) {
@@ -90,14 +101,6 @@ public class GameBoard extends JPanel {
             }
 
         }
-
-
-/*        if (!piles.get("wastePile").isEmpty()) {
-            if (piles.get("wastePile").getTopCard().contains(mx, my)) {
-                return piles.get("wastePile").getTopCard();
-            }
-        }*/
-
         return null;
     }
 
@@ -125,8 +128,6 @@ public class GameBoard extends JPanel {
         movingCard = null;
         repaint();
     }
-
-
 
 
 }

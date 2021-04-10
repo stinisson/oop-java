@@ -8,16 +8,16 @@ import java.io.IOException;
 
 public class Card {
 
-    int cardWidth = 71;
-    int cardHeight = 96;
+    static final int width = 71;
+    static final int height = 96;
     int x, y;
     boolean isUp = false;
     BufferedImage frontImage, backImage;
     private static final String[] colors = {"c", "d", "h", "s"};
     private static final String[] values = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k"};
     String parentPile;
-    private int cardValue;
-    private String cardColor;
+    private final int cardValue;
+    private final String cardColor;
 
     public Card(int x, int y, int color, int value, String parentPile) {
         this.x = x;
@@ -47,8 +47,7 @@ public class Card {
 
 
     public boolean contains(int mx, int my) {
-        System.out.println("In contains: " + (mx > x && mx <= x+cardWidth && my > y && my <= y+cardHeight));
-        return mx > x && mx <= x+cardWidth && my > y && my <= y+cardHeight;
+        return mx > x && mx <= x+ width && my > y && my <= y+ height;
     }
 
     public Integer[] getPosition() {

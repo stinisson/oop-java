@@ -16,7 +16,7 @@ abstract class Pile {
         this.x = x;
         this.y = y;
         cards = new ArrayList<>();
-        cardOutline = new CardOutline(x, y);
+        cardOutline = new CardOutline(x, y, name);
         this.name = name;
     }
 
@@ -29,7 +29,7 @@ abstract class Pile {
     }
 
     protected void render(Graphics g, java.awt.image.ImageObserver observer) {
-        cardOutline.render(g);
+        cardOutline.render(g, observer);
         if (!isEmpty()) {
             getTopCard().render(g, observer);
         }
@@ -59,7 +59,7 @@ abstract class Pile {
     }
 
     protected boolean inRange(Card card) {
-        int range = card.cardWidth / 2;
+        int range = card.width / 2;
         int dx = abs(card.getPosition()[0] - x);
         int dy = abs(card.getPosition()[1] - y);
         return dx < range && dy < range;

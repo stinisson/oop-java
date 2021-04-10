@@ -47,12 +47,10 @@ class MouseListener extends MouseAdapter implements MouseMotionListener {
     public void mouseClicked(MouseEvent e) {
         int mx = e.getX();
         int my = e.getY();
-        System.out.println("Click at " + mx + " " + my);
         gameBoard.stockAction(mx, my);
     }
 
     public void mouseReleased(MouseEvent e) {
-        System.out.println("Released");
         gameBoard.dropCard();
     }
 }

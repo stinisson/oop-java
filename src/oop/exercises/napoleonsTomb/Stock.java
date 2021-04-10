@@ -14,7 +14,7 @@ public class Stock extends Pile {
 
     public void dealCards(boolean fixedOrder) {
 
-        clearCards();
+        //clearCards();
 
         for (int color = 0; color < nColors; color++) {
             for (int value = 0; value < nValues; value++) {
@@ -27,6 +27,7 @@ public class Stock extends Pile {
         } else {
             Collections.shuffle(cards);
         }
+
     }
 
 }
