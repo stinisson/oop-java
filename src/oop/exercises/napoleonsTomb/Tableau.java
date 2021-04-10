@@ -9,9 +9,13 @@ public class Tableau extends Pile {
     public boolean put(Card card) {
 
         if (inRange(card)) {
-            card.parentPile = name;
-            addCard(card);
-            return true;
+
+            if (isEmpty()) {
+                card.parentPile = name;
+                addCard(card);
+                return true;
+            }
+
         }
         return false;
     }

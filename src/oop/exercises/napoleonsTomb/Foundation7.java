@@ -10,10 +10,24 @@ public class Foundation7 extends Pile {
 
         System.out.println(card.getCardColor());
 
-        if (inRange(card) && card.getCardValue() == 7) {
-            card.parentPile = name;
-            addCard(card);
-            return true;
+        if (inRange(card)) {
+
+            if (isEmpty() && card.getCardValue() == 7) {
+                card.parentPile = name;
+                addCard(card);
+                return true;
+            }
+
+            if (!isEmpty() && card.getCardValue() == getTopCard().getCardValue() + 1) {
+                card.parentPile = name;
+                addCard(card);
+                return true;
+            }
+
+            if (!isEmpty() && getTopCard().getCardValue() == 13) {
+                return false;
+            }
+
         }
         return false;
     }

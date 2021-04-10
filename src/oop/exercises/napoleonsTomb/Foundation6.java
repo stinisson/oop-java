@@ -16,7 +16,7 @@ public class Foundation6 extends Pile {
                 addCard(card);
                 return true;
             }
-            
+
             if (!isEmpty() && card.getCardValue() == getTopCard().getCardValue() - 1) {
                 card.parentPile = name;
                 addCard(card);
