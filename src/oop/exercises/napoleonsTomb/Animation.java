@@ -6,12 +6,14 @@ import java.util.HashMap;
 
 public class Animation {
 
-    protected final ArrayList<AnimationCard> animationCards;
-    private static final int timeStep = 33;
+    private final ArrayList<AnimationCard> animationCards;
     private static final int animationLength = 10000;
-    int animationTime = 0;
+    private static final int timeStep = 33;
+    private int animationTime = 0;
+    private final int boardHeight;
 
-    public Animation() {
+    public Animation(int boardHeight) {
+        this.boardHeight = boardHeight;
         animationCards = new ArrayList<>();
     }
 
@@ -38,7 +40,6 @@ public class Animation {
         return true;
     }
 
-
     private void clearCards() {
         animationCards.clear();
     }
@@ -46,7 +47,7 @@ public class Animation {
     public void addPiles(HashMap<String, Pile> piles) {
         for (Pile pile : piles.values()) {
             for (Card card: pile.cards) {
-                AnimationCard animationCard = new AnimationCard(card);
+                AnimationCard animationCard = new AnimationCard(card, boardHeight);
                 animationCards.add(animationCard);
             }
         }

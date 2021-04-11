@@ -11,7 +11,7 @@ public class Tableau extends Pile {
         if (inRange(card)) {
 
             if (isEmpty()) {
-                card.parentPile = name;
+                card.setParentPileName(name);
                 addCard(card, true);
                 return true;
             }

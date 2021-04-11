@@ -8,11 +8,10 @@ import java.awt.event.MouseMotionListener;
 
 class MouseListener extends MouseAdapter implements MouseMotionListener {
 
-    GameBoard gameBoard;
-    Card selectedCard;
-    int mx, my;
-    int x, y;
-    int dx, dy;
+    private final GameBoard gameBoard;
+    private Card selectedCard;
+    private int mx, my;
+    private int dx, dy;
 
     public MouseListener (GameBoard gb) {
         gameBoard = gb;
@@ -24,11 +23,9 @@ class MouseListener extends MouseAdapter implements MouseMotionListener {
         selectedCard = gameBoard.containsCard(mx, my);
 
         if (selectedCard != null) {
-            x = selectedCard.getPosition()[0];
-            y = selectedCard.getPosition()[1];
-            dx = x - mx;
-            dy = y - my;
-            gameBoard.piles.get(selectedCard.parentPile).removeTopCard();
+            dx = selectedCard.getPosition()[0] - mx;
+            dy = selectedCard.getPosition()[1] - my;
+            gameBoard.getPile(selectedCard.getParentPileName()).removeTopCard();
             gameBoard.moveCard(selectedCard, mx + dx, my + dy);
         }
     }

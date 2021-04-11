@@ -11,6 +11,4 @@ public class WastePile extends Pile {
     public ArrayList<Card> getCards() {
         return cards;
     }
-
-
 }

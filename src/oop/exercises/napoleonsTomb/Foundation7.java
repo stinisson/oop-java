@@ -10,13 +10,13 @@ public class Foundation7 extends Pile {
         if (inRange(card)) {
 
             if (isEmpty() && card.getCardValue() == 7) {
-                card.parentPile = name;
+                card.setParentPileName(name);
                 addCard(card, true);
                 return true;
             }
 
             if (!isEmpty() && card.getCardValue() == getTopCard().getCardValue() + 1) {
-                card.parentPile = name;
+                card.setParentPileName(name);
                 addCard(card, true);
                 return true;
             }
@@ -28,5 +28,4 @@ public class Foundation7 extends Pile {
         }
         return false;
     }
-
 }

@@ -7,15 +7,19 @@ import java.util.HashMap;
 
 public class GameBoard extends JPanel {
 
-    boolean resourcesLoaded = false;
-    HashMap<String, Pile> piles;
-    Card movingCard;
-    int stockRoundCount;
-    private Animation winAnimation;
     private static final String[] tableauNames = {"tableauT", "tableauLM", "tableauRM", "tableauB"};
+    private static final Color backgroundColor = new Color(8, 120, 85, 255);
+    private static final int numCols = 7;
+    private static final int topOffset = 20;
+
+    private boolean resourcesLoaded = false;
+    private int stockRoundCount;
+    private Card movingCard;
+    private Animation winAnimation;
+    private final HashMap<String, Pile> piles = new HashMap<>();
 
     public GameBoard() {
-        setBackground(new Color(8, 120, 85, 255));
+        setBackground(backgroundColor);
         MouseListener ml = new MouseListener(this);
         addMouseListener(ml);
         addMouseMotionListener(ml);
@@ -38,7 +42,6 @@ public class GameBoard extends JPanel {
         if (winAnimation != null) {
             winAnimation.render(g, this);
         }
-
     }
 
     public void stockAction(int mx, int my) {
@@ -62,7 +65,7 @@ public class GameBoard extends JPanel {
         if (piles.get("stock").getTopCard().contains(mx, my)) {
             Card wasteCard = piles.get("stock").getTopCard();
             piles.get("stock").removeTopCard();
-            wasteCard.parentPile = "wastePile";
+            wasteCard.setParentPileName("wastePile");
             piles.get("wastePile").addCard(wasteCard, true);
             repaint();
         }
@@ -70,25 +73,20 @@ public class GameBoard extends JPanel {
 
     public void setUpBoard() {
         int pWidth = getWidth();
-        int cardWidth = 71;
-        int cardHeight = 96;
-        int numCols = 7;
-        int offset = 20;
-        int margin = (pWidth - numCols*cardWidth)/8;
+        int margin = (pWidth - numCols * Card.width) / 8;
 
-        piles = new HashMap<>();
-        piles.put("foundationLT", new Foundation7(cardWidth + 2 * margin - offset, margin, "foundationLT"));
-        piles.put("foundationRT", new Foundation7(3 * cardWidth + 4 * margin + offset, margin, "foundationRT"));
-        piles.put("foundationLB", new Foundation7(cardWidth + 2 * margin - offset, 2 * cardHeight + 3 * margin + 2 * offset, "foundationLB"));
-        piles.put("foundationRB", new Foundation7(3 * cardWidth + 4 * margin + offset, 2 * cardHeight + 3 * margin + 2 * offset, "foundationRB"));
-        piles.put("foundationM", new Foundation6(2 * cardWidth + 3 * margin, cardHeight+ 2 * margin + offset, "foundationM"));
-        piles.put("tableauT", new Tableau(2 * cardWidth + 3 * margin, margin + offset, "tableauT"));
-        piles.put("tableauLM", new Tableau(cardWidth + 2 * margin, cardHeight+ 2 * margin + offset, "tableauLM"));
-        piles.put("tableauRM", new Tableau(3 * cardWidth + 4 * margin, cardHeight+ 2 * margin + offset, "tableauRM"));
-        piles.put("tableauB", new Tableau(2 * cardWidth + 3 * margin, 2 * cardHeight + 3 * margin + offset, "tableauB"));
-        piles.put("stock", new Stock(5 * cardWidth + 6 * margin, margin + offset, "stock"));
-        piles.put("wastePile", new WastePile(6 * cardWidth + 7 * margin, margin + offset, "wastePile"));
-        piles.put("parking", new Parking(6 * cardWidth + 7 * margin, 2 * cardHeight + 3 * margin + offset, "parking"));
+        piles.put("foundationLT", new Foundation7(Card.width + 2 * margin - topOffset, margin, "foundationLT"));
+        piles.put("foundationRT", new Foundation7(3 * Card.width + 4 * margin + topOffset, margin, "foundationRT"));
+        piles.put("foundationLB", new Foundation7(Card.width + 2 * margin - topOffset, 2 * Card.height + 3 * margin + 2 * topOffset, "foundationLB"));
+        piles.put("foundationRB", new Foundation7(3 * Card.width + 4 * margin + topOffset, 2 * Card.height + 3 * margin + 2 * topOffset, "foundationRB"));
+        piles.put("foundationM", new Foundation6(2 * Card.width + 3 * margin, Card.height+ 2 * margin + topOffset, "foundationM"));
+        piles.put("tableauT", new Tableau(2 * Card.width + 3 * margin, margin + topOffset, "tableauT"));
+        piles.put("tableauLM", new Tableau(Card.width + 2 * margin, Card.height+ 2 * margin + topOffset, "tableauLM"));
+        piles.put("tableauRM", new Tableau(3 * Card.width + 4 * margin, Card.height+ 2 * margin + topOffset, "tableauRM"));
+        piles.put("tableauB", new Tableau(2 * Card.width + 3 * margin, 2 * Card.height + 3 * margin + topOffset, "tableauB"));
+        piles.put("stock", new Stock(5 * Card.width + 6 * margin, margin + topOffset, "stock"));
+        piles.put("wastePile", new WastePile(6 * Card.width + 7 * margin, margin + topOffset, "wastePile"));
+        piles.put("parking", new Parking(6 * Card.width + 7 * margin, 2 * Card.height + 3 * margin + topOffset, "parking"));
     }
 
     public void dealCards(boolean fixedOrder) {
@@ -101,7 +99,7 @@ public class GameBoard extends JPanel {
         for (String tableau : tableauNames) {
             Card dealCard = piles.get("stock").getTopCard();
             piles.get("stock").removeTopCard();
-            dealCard.parentPile = tableau;
+            dealCard.setParentPileName(tableau);
             piles.get(tableau).addCard(dealCard, true);
         }
         resourcesLoaded = true;
@@ -138,13 +136,13 @@ public class GameBoard extends JPanel {
                 return;
             }
         }
-        piles.get(movingCard.parentPile).addCard(movingCard, true);
+        piles.get(movingCard.getParentPileName()).addCard(movingCard, true);
         movingCard = null;
         repaint();
     }
 
     public boolean tableauIsFilled() {
-        // One out of the four tableau is is allowed to be empty. It will not be possible to get another card from the
+        // One out of the four tableau is allowed to be empty. It will not be possible to get another card from the
         // stock (unless wastepile is empty) when more than 1/4 tableau is empty.
         int numEmptyTableau = 0;
         for (String tableauName : tableauNames) {
@@ -155,30 +153,29 @@ public class GameBoard extends JPanel {
         return numEmptyTableau <= 1;
     }
 
-    public boolean checkWin() {
+    public void checkWin() {
         if (piles.get("stock").isEmpty() && piles.get("wastePile").isEmpty()
                 && piles.get("tableauT").isEmpty() && piles.get("tableauLM").isEmpty()
                 && piles.get("tableauRM").isEmpty() && piles.get("tableauB").isEmpty()
                 && piles.get("parking").isEmpty()) {
-            System.out.println("Hipp hipp you have won!");
 
-            winAnimation = new Animation();
+            int boardHeight = getHeight();
+            winAnimation = new Animation(boardHeight);
             winAnimation.addPiles(piles);
             for (Pile pile : piles.values()) {
                 pile.clearCards();
             }
-            new Thread(() -> {
-                runAnimation();
-            }).start();
-            return true;
+            new Thread(this::runAnimation).start();
         }
-        System.out.println("In has won, haven't won yet. Not all piles are empty!");
-        return false;
     }
 
     private void runAnimation() {
         while (winAnimation.step()) {
             repaint();
         }
+    }
+
+    public Pile getPile(String name) {
+        return piles.get(name);
     }
 }

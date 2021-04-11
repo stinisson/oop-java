@@ -7,17 +7,17 @@ import static java.lang.Math.abs;
 
 abstract class Pile {
 
-    protected final ArrayList<Card> cards;
     protected int x, y;
+    protected final String name;
+    protected final ArrayList<Card> cards;
     private final CardOutline cardOutline;
-    protected String name;
 
     protected Pile(int x, int y, String name) {
         this.x = x;
         this.y = y;
+        this.name = name;
         cards = new ArrayList<>();
         cardOutline = new CardOutline(x, y, name);
-        this.name = name;
     }
 
     public void clearCards() {
@@ -48,9 +48,9 @@ abstract class Pile {
     }
 
     public void addCard(Card card, boolean isUp) {
-        card.x = x;
-        card.y = y;
-        card.isUp = isUp;
+        card.setX(x);
+        card.setY(y);
+        card.setIsUp(isUp);
         cards.add(card);
     }
 
@@ -59,13 +59,9 @@ abstract class Pile {
     }
 
     protected boolean inRange(Card card) {
-        int range = card.width / 2;
+        int range = Card.width / 2;
         int dx = abs(card.getPosition()[0] - x);
         int dy = abs(card.getPosition()[1] - y);
         return dx < range && dy < range;
     }
-
-
-    // getCards()
-
 }

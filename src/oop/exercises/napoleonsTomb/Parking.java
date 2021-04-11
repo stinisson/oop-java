@@ -8,7 +8,7 @@ public class Parking extends Pile {
     public boolean put(Card card) {
 
         if (inRange(card) && card.getCardValue() == 6 && isEmpty()) {
-            card.parentPile = name;
+            card.setParentPileName(name);
             addCard(card, true);
             return true;
         }
