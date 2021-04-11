@@ -28,9 +28,6 @@ class MouseListener extends MouseAdapter implements MouseMotionListener {
             y = selectedCard.getPosition()[1];
             dx = x - mx;
             dy = y - my;
- /*           gameBoard.figures.remove(selectedCard);
-            gameBoard.figures.add(selectedCard);*/
-
             gameBoard.piles.get(selectedCard.parentPile).removeTopCard();
             gameBoard.moveCard(selectedCard, mx + dx, my + dy);
         }

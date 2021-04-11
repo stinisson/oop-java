@@ -10,8 +10,9 @@ public class GameBoard extends JPanel {
     boolean resourcesLoaded = false;
     HashMap<String, Pile> piles;
     Card movingCard;
-    int stockRoundCount = 1;
+    int stockRoundCount;
     private Animation winAnimation;
+    private static final String[] tableauNames = {"tableauT", "tableauLM", "tableauRM", "tableauB"};
 
     public GameBoard() {
         setBackground(new Color(8, 120, 85, 255));
@@ -35,13 +36,16 @@ public class GameBoard extends JPanel {
         }
 
         if (winAnimation != null) {
-            System.out.println("ritar");
             winAnimation.render(g, this);
         }
 
     }
 
     public void stockAction(int mx, int my) {
+        if (!tableauIsFilled() && !piles.get("wastePile").isEmpty()) {
+            return;
+        }
+
         if (piles.get("stock").isEmpty()) {
             if (stockRoundCount > 0) {
                 stockRoundCount =- 1;
@@ -88,14 +92,13 @@ public class GameBoard extends JPanel {
     }
 
     public void dealCards(boolean fixedOrder) {
+        stockRoundCount = 1; // reset stock count
         for (Pile pile : piles.values()) {
             pile.clearCards();
         }
         ((Stock) piles.get("stock")).dealCards(fixedOrder);
 
-        String[] dealTableau = {"tableauT", "tableauLM", "tableauRM", "tableauB"};
-
-        for (String tableau : dealTableau) {
+        for (String tableau : tableauNames) {
             Card dealCard = piles.get("stock").getTopCard();
             piles.get("stock").removeTopCard();
             dealCard.parentPile = tableau;
@@ -104,39 +107,6 @@ public class GameBoard extends JPanel {
         resourcesLoaded = true;
         repaint();
     }
-
-    /*
-    public void dealCards(boolean fixedOrder) {
-        for (Pile pile : piles.values()) {
-            pile.clearCards();
-        }
-        ((Stock) piles.get("stock")).dealCards(fixedOrder);
-
-        String[] dealTableau = {"foundationLT", "foundationRT", "foundationLB", "foundationRB"};
-
-        for (String tableau : dealTableau) {
-            for (int i = 0; i < 7; i++) {
-                Card dealCard = piles.get("stock").getTopCard();
-                piles.get("stock").removeTopCard();
-                dealCard.parentPile = tableau;
-                piles.get(tableau).addCard(dealCard, true);
-            }
-        }
-
-        for (int i = 0; i < 6 * 4 - 1; i++) {
-            Card dealCard = piles.get("stock").getTopCard();
-            piles.get("stock").removeTopCard();
-            dealCard.parentPile = "foundationM";
-            piles.get("foundationM").addCard(dealCard, true);
-        }
-
-        resourcesLoaded = true;
-        repaint();
-
-        checkWin();
-    }
-    */
-
 
     public Card containsCard(int mx, int my) {
         for (Pile pile : piles.values()) {
@@ -173,6 +143,18 @@ public class GameBoard extends JPanel {
         repaint();
     }
 
+    public boolean tableauIsFilled() {
+        // One out of the four tableau is is allowed to be empty. It will not be possible to get another card from the
+        // stock (unless wastepile is empty) when more than 1/4 tableau is empty.
+        int numEmptyTableau = 0;
+        for (String tableauName : tableauNames) {
+            if (piles.get(tableauName).isEmpty()) {
+                numEmptyTableau += 1;
+            }
+        }
+        return numEmptyTableau <= 1;
+    }
+
     public boolean checkWin() {
         if (piles.get("stock").isEmpty() && piles.get("wastePile").isEmpty()
                 && piles.get("tableauT").isEmpty() && piles.get("tableauLM").isEmpty()
@@ -196,7 +178,6 @@ public class GameBoard extends JPanel {
 
     private void runAnimation() {
         while (winAnimation.step()) {
-            System.out.println("rita");
             repaint();
         }
     }
