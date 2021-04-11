@@ -3,7 +3,6 @@ package oop.exercises.napoleonsTomb;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class Card {
@@ -26,13 +25,13 @@ public class Card {
         this.parentPileName = parentPile;
 
         String cardName = colors[color] + values[value];
-        frontImage = readImage("src/oop/exercises/napoleonsTomb/images/" + cardName + ".gif");
-        backImage = readImage("src/oop/exercises/napoleonsTomb/images/b1fv.gif");
+        frontImage = readImage("/resources/images/" + cardName + ".gif");
+        backImage = readImage("/resources/images/b1fv.gif");
     }
 
     private BufferedImage readImage(String path) {
         try {
-            return ImageIO.read(new File(path));
+            return ImageIO.read(getClass().getResource(path));
         } catch (IOException e) {
             e.printStackTrace();
             return null;

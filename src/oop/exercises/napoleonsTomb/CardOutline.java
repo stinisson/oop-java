@@ -3,7 +3,6 @@ package oop.exercises.napoleonsTomb;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class CardOutline {
@@ -18,11 +17,11 @@ public class CardOutline {
 
         switch (pileName) {
             case "foundationM", "parking" ->
-                    outline = readImage("src/oop/exercises/napoleonsTomb/images/outlines/foundation6.png");
+                    outline = readImage("/resources/images/outlines/foundation6.png");
             case "foundationLT", "foundationRT", "foundationLB", "foundationRB" ->
-                    outline = readImage("src/oop/exercises/napoleonsTomb/images/outlines/foundation7.png");
+                    outline = readImage("/resources/images/outlines/foundation7.png");
             case "stock", "wastePile", "tableauT", "tableauB", "tableauLM", "tableauRM" ->
-                    outline = readImage("src/oop/exercises/napoleonsTomb/images/outlines/foundation_empty.png");
+                    outline = readImage("/resources/images/outlines/foundation_empty.png");
             default ->
                     outline = null;
         }
@@ -30,7 +29,7 @@ public class CardOutline {
 
     private BufferedImage readImage(String path) {
         try {
-            return ImageIO.read(new File(path));
+            return ImageIO.read(getClass().getResourceAsStream(path));
         } catch (IOException e) {
             e.printStackTrace();
             return null;
