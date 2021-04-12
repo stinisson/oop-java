@@ -90,7 +90,7 @@ public class GameBoard extends JPanel {
     }
 
     public void dealCards(boolean fixedOrder) {
-        stockRoundCount = 1; // reset stock count
+        stockRoundCount = 1; // reset stock count - possible to turn stock once
         for (Pile pile : piles.values()) {
             pile.clearCards();
         }
@@ -136,6 +136,7 @@ public class GameBoard extends JPanel {
                 return;
             }
         }
+        // Card not dropped on any pile, return to its source
         piles.get(movingCard.getParentPileName()).addCard(movingCard, true);
         movingCard = null;
         repaint();

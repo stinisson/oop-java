@@ -12,6 +12,11 @@ public class Stock extends Pile {
         super(x, y, name);
     }
 
+    @Override
+    public boolean put(Card card) {
+        return false;
+    }
+
     public void dealCards(boolean fixedOrder) {
 
         for (int color = 0; color < nColors; color++) {

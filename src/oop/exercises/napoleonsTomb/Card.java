@@ -50,17 +50,17 @@ public class Card {
         return mx > x && mx <= x + width && my > y && my <= y + height;
     }
 
+    public void move(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public Integer[] getPosition() {
         return new Integer[]{x, y};
     }
 
     public int getCardValue() {
         return value;
-    }
-
-    public void move(int x, int y) {
-        this.x = x;
-        this.y = y;
     }
 
     public void setParent(String parent) {

@@ -20,19 +20,15 @@ abstract class Pile {
         cardOutline = new CardOutline(x, y, name);
     }
 
-    public void clearCards() {
-        cards.clear();
-    }
-
-    public String getName() {
-        return name;
-    }
-
     protected void render(Graphics g, java.awt.image.ImageObserver observer) {
         cardOutline.render(g, observer);
         if (!isEmpty()) {
             getTopCard().render(g, observer);
         }
+    }
+
+    public void clearCards() {
+        cards.clear();
     }
 
     public Card getTopCard() {
@@ -54,14 +50,17 @@ abstract class Pile {
         cards.add(card);
     }
 
-    public boolean put(Card card) {
-        return false;
-    }
-
     protected boolean inRange(Card card) {
         int range = Card.width / 2;
         int dx = abs(card.getPosition()[0] - x);
         int dy = abs(card.getPosition()[1] - y);
         return dx < range && dy < range;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    abstract public boolean put(Card card);
+
 }

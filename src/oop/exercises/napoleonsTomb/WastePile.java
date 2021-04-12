@@ -8,6 +8,11 @@ public class WastePile extends Pile {
         super(x, y, name);
     }
 
+    @Override
+    public boolean put(Card card) {
+        return false;
+    }
+
     public ArrayList<Card> getCards() {
         return cards;
     }
