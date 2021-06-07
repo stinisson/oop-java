@@ -1,3 +1,5 @@
+package oop.exercises.tenta.uppgift7;
+
 import java.awt.*;
 import java.io.Serializable;
 
@@ -11,5 +13,5 @@ public abstract class Shape implements Serializable {
         return color; 
     }
 
-    private Color color = Color.black; 
+    private Color color = Color.black;
 }

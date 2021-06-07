@@ -1,7 +1,9 @@
-import java.util.*;
-import java.awt.Point;
-import java.awt.Color;
-import java.awt.Graphics;
+package oop.exercises.tenta.uppgift7;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Stroke extends Shape { 
 

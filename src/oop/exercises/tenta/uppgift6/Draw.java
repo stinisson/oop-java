@@ -1,3 +1,5 @@
+package oop.exercises.tenta.uppgift6;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -56,7 +58,9 @@ public class Draw extends JFrame {
         toolkit = new ToolKit(); 
         toolkit.addTool(new ScribbleTool(canvas, "Scribble")); 
         toolkit.addTool(new BilateralTool(canvas, "Line", BilateralTool.LINE)); 
-        toolkit.addTool(new BilateralTool(canvas, "Oval", BilateralTool.OVAL)); 
+        //toolkit.addTool(new BilateralTool(canvas, "Oval", BilateralTool.OVAL));
+        toolkit.addTool(new BilateralTool(canvas, "Circle", BilateralTool.OVAL));
+
         toolkit.addTool(new BilateralTool(canvas, "Rectangle", BilateralTool.RECT));
         canvas.setTool(toolkit.getTool(0));
     }

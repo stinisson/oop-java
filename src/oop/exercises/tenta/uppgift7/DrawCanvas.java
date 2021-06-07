@@ -1,12 +1,10 @@
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Point;
-import java.util.*;
-import java.io.*;
-import java.awt.event.*;
-import java.util.EventListener;
-import javax.swing.*; 
+package oop.exercises.tenta.uppgift7;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class DrawCanvas extends JPanel { 
 

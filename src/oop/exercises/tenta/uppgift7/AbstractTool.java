@@ -1,4 +1,6 @@
-public abstract class AbstractTool implements Tool { 
+package oop.exercises.tenta.uppgift7;
+
+public abstract class AbstractTool implements Tool {
 
     public DrawCanvas getCanvas() {
         return canvas;

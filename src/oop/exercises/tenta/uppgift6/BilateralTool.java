@@ -1,4 +1,6 @@
-import java.awt.*; 
+package oop.exercises.tenta.uppgift6;
+
+import java.awt.*;
 
 public class BilateralTool extends AbstractTool {
 
@@ -18,13 +20,13 @@ public class BilateralTool extends AbstractTool {
         yStart = canvas.y = p.y; 
         Graphics g = canvas.getGraphics();
         g.setXORMode(Color.darkGray); 
-        g.setColor(Color.lightGray); 
+        g.setColor(Color.red);
         switch (shape) {
         case LINE:
             drawLine(g, xStart, yStart, xStart, yStart); 	       
             break; 
         case OVAL:
-            drawOval(g, xStart, yStart, 1, 1); 	       
+            drawOval(g, xStart, yStart, xStart+1, yStart+1);
             break; 
         case RECT:
             drawRect(g, xStart, yStart, 1, 1); 
@@ -37,17 +39,21 @@ public class BilateralTool extends AbstractTool {
         if (canvas.mouseButtonDown) {
             Graphics g = canvas.getGraphics();
             g.setXORMode(Color.darkGray); 
-            g.setColor(Color.lightGray); 
+            g.setColor(Color.green);
             switch (shape) {
             case LINE:
                 drawLine(g, xStart, yStart, canvas.x, canvas.y); 
                 drawLine(g, xStart, yStart, p.x, p.y); 
                 break; 
             case OVAL:
-                drawOval(g, xStart, yStart, 
+                /* drawOval(g, xStart, yStart,
                          canvas.x - xStart + 1, canvas.y - yStart + 1); 
                 drawOval(g, xStart, yStart, 
-                         p.x - xStart + 1, p.y - yStart + 1);  
+                         p.x - xStart + 1, p.y - yStart + 1);
+                */
+
+                drawOval(g, xStart, yStart, canvas.x, canvas.y);
+                drawOval(g, xStart, yStart, p.x, p.y);
                 break; 
             case RECT:
                 drawRect(g, xStart, yStart, 
@@ -104,16 +110,10 @@ public class BilateralTool extends AbstractTool {
         g.drawRect(x, y, w, h); 
     }
   
-    public static void drawOval(Graphics g, int x, int y, int w, int h) {
-        if (w < 0) {
-            x = x + w; 
-            w = -w; 
-        }
-        if (h < 0) {
-            y = y + h;
-            h = -h;
-        }
-        g.drawOval(x, y, w, h); 
+    public static void drawOval(Graphics g, int x1, int y1, int x2, int y2) {
+
+        double r = Math.sqrt(Math.pow(x2-x1, 2) + Math.pow(y2-y1, 2));
+        g.drawOval((int) (x1-r), (int) (y1-r), (int) (2*r), (int) (2*r));
     } 
 
 }

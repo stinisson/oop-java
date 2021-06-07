@@ -1,5 +1,9 @@
+package oop.exercises.tenta.uppgift7;
+
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 public class DrawCanvasListener 
     implements MouseListener, MouseMotionListener {

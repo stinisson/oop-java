@@ -1,4 +1,6 @@
-import java.awt.*; 
+package oop.exercises.tenta.uppgift6;
+
+import java.awt.*;
 
 public class LineShape extends BilateralShape {
 

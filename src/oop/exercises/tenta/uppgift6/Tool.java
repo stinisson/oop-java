@@ -1,3 +1,4 @@
+package oop.exercises.tenta.uppgift6;
 
 import java.awt.*;
 

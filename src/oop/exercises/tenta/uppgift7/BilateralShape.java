@@ -1,5 +1,6 @@
-import java.awt.Graphics;
-import java.awt.Color;
+package oop.exercises.tenta.uppgift7;
+
+import java.awt.*;
 
 public abstract class BilateralShape extends Shape { 
 

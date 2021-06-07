@@ -1,4 +1,7 @@
-import java.util.*; 
+package oop.exercises.tenta.uppgift7;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ToolKit {
 
