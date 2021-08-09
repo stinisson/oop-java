@@ -1,6 +1,5 @@
 package oop.exercises.napoleonsTomb;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

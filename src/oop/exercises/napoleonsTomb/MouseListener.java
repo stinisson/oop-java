@@ -1,6 +1,5 @@
 package oop.exercises.napoleonsTomb;
 
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;

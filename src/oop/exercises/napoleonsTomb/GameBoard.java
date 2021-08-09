@@ -136,7 +136,7 @@ public class GameBoard extends JPanel {
                 return;
             }
         }
-        // Card not dropped on any pile, return to its source
+        // If card not dropped on/accepted by pile, return to source
         piles.get(movingCard.getParentPileName()).addCard(movingCard, true);
         movingCard = null;
         repaint();
